@@ -29,7 +29,7 @@
   position: relative;
   height: 446px;
 
-  background: url("../images/companies/arma/bg.jpg") center;
+  background-position: center;
   background-size: cover;
   color: white;
 }
@@ -50,6 +50,37 @@
   font-weight: 500;
   line-height: 1.5;
   text-align: center;
+}
+
+.article .info {
+  position: absolute;
+  bottom: 27px; left: 50%;
+  transform: translateX(-50%);
+
+  font-family: 'Geometria', serif;
+}
+
+.article .info li {
+  position: relative;
+  float: left;
+  height: 56px;
+  width: 33%;
+  border-right: 1px solid #979797;
+}
+
+.article .info li div {
+  font-size: 14px;
+  text-align: center;
+}
+
+.article .info li div:first-child {
+  font-weight: 500;
+  margin-top: 8px;
+  margin-bottom: 5px;
+}
+
+.article .info li div:last-child {
+  font-weight: 800;
 }
 
 .article-content {
@@ -112,4 +143,62 @@
   font-size: 14px;
   font-weight: 500;
   text-align: center;
+}
+
+footer {
+  padding: 20px 0 40px;
+
+  background: #888BCD;
+  color: white;
+}
+
+footer > * {
+  max-width: 450px;
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+footer > h3 {
+  margin-bottom: 20px;
+
+  font-family: 'Geometria', serif;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+footer > h1 {
+  margin-bottom: 20px;
+
+  font-size: 36px;
+  font-weight: 900;
+}
+
+footer > h2 {
+  margin-bottom: 30px;
+
+  font-family: 'Geometria', serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ad {
+  position: relative;
+
+  margin: 0 auto;
+  height: 430px;
+  max-width: 772px;
+
+  background: url("../images/sponsor-tochka-footer.png") 30% bottom no-repeat;
+  background-size: 420px auto;
+}
+
+.legal {
+  color: #6D6A6B;
+  font-family: 'Geometria', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+
+  position: absolute;
+  bottom: 60px;
 }

@@ -32,9 +32,12 @@ gulp.task('assets', function() {
 
 gulp.task('nunjucks', function() {
   return gulp.src('frontend/pages/**/*.html')
-    .pipe(data(function() {
-      return require('./frontend/data.json')
-    }))
+    .pipe(data(function() { return require('./frontend/data/arma.json') }))
+    .pipe(data(function() { return require('./frontend/data/crossfit.json') }))
+    .pipe(data(function() { return require('./frontend/data/group_ib.json') }))
+    .pipe(data(function() { return require('./frontend/data/mandalay.json') }))
+    .pipe(data(function() { return require('./frontend/data/bakery_brothers.json') }))
+    .pipe(data(function() { return require('./frontend/data/zeit_fur_brot.json') }))
     .pipe(nunjucksRender({
         path: ['frontend/templates']
       }))
@@ -46,6 +49,7 @@ gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'assets', 'nunju
 gulp.task('watch', function() {
   gulp.watch('frontend/styles/**/*.*', gulp.series('styles'));
   gulp.watch('frontend/assets/**/*.*', gulp.series('assets'));
+  gulp.watch('frontend/data/**/*.*', gulp.series('nunjucks'));
   gulp.watch('frontend/(pages|templates)/**/*.*', gulp.series('nunjucks'));
 });
 

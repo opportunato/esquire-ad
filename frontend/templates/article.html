@@ -14,11 +14,25 @@
         <img src="./images/sponsor-otkritie.png" />
       </div>
     </nav>
-    <header style={{ "background-image: url('../images/companies/" + data.key + "/bg.jpg');" }}>
+    <header style="background-image:url(../images/companies/{{data.key}}/bg.jpg);">
       <div class="center-wrapper">
         <h1>{{ data.title }}</h1>
         <h2>{{ data.description }}</h2>
       </div>
+      <ul class="info main-wrapper">
+        <li>
+          <div>Город</div>
+          <div>{{ data.city }}</div>
+        </li>
+        <li>
+          <div>Год основания</div>
+          <div>{{ data.year }}</div>
+        </li>
+        <li>
+          <div>Количество сотрудников</div>
+          <div>{{ data.employee_number }}</div>
+        </li>
+      </ul>
     </header>
     <div class="article-content">
       {% for block in data.content %}
@@ -27,14 +41,14 @@
             <h3>{{ block.content }}</h3>
           {% elif block.type == "image" %}
             <figure>
-              <p><img src={{ "../images/companies/" + data.key + "/photos/" + block.content + ".jpg" }} /></p>
+              <p><img src="../images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
               {% if block.caption %}
                 <figcaption>{{ block.caption }}</figcaption>
               {% endif %}
             </figure>
           {% elif block.type == "slider" %}
             <figure class="slider">
-              <p><img src={{ "../images/companies/" + data.key +  "/photos/" + block.content + ".jpg" }} /></p>
+              <p><img src="../images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
               {% if block.caption %}
                 <figcaption>{{ block.caption }}</figcaption>
               {% endif %}
@@ -42,7 +56,7 @@
           {% elif block.type == "images" %}
             <figure class="group">
               {% for image in block.content %}
-                <p><img src={{ "../images/companies/" + data.key + "/photos/" + image + ".jpg" }} /></p>
+                <p><img src="../images/companies/{{data.key}}/photos/{{image}}.jpg" /></p>
               {% endfor %}
             </figure>
           {% endif %}
@@ -54,6 +68,18 @@
           {% endif %}
         {% endif %}
       {% endfor %}
+    </div>
+    <footer>
+      <h3>Сравнить с</h3>
+      <h1>{{ crossdata.short_title }}</h1>
+      <h2>{{ crossdata.city_description }}</h2>
+      <a href="{{crossdata.key}}.html" class="button">Читать</a>
+    </footer>
+    <div class="ad">
+      <div class="legal">
+        ПАО «Ханты-Мансийский банк Открытие». www.openbank.ru Генеральная лицензия Банка России №1971 от 05.11.2014<br/>
+        Филиал «Бизнес онлайн» ОГРН: 1028600001880 ИНН: 8601000666 Корреспондентский счёт: 30101810600000000999 БИК: 044583999 Юридический адрес: 117216, Москва, Старокачаловская 1, корпус 2
+      </div>
     </div>
   </main>
 {% endblock %}

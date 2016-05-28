@@ -1,6 +1,22 @@
 <!-- index.nunjucks -->
 {% extends "layout.html" %}
 
+{% macro company(data) %}
+<a href="{{data.key}}.html" class="company">
+  <img src="./images/companies/{{data.key}}/preview.png" />
+  <h3>{{ data.short_title }}</h3>
+  <h4>{{ data.city }}</h4>
+</a>
+{% endmacro %}
+
+{% macro compared(title, data1, data2) %}
+<article class="compared">
+  <h2>{{ title }}</h2>
+  {{ company(data1) }}
+  {{ company(data2) }}
+</article>
+{% endmacro %}
+
 {% block content %}
   <div class="main">
     <div class="root">
@@ -17,54 +33,18 @@
       <div class="root-content">
         <h1>Кроссфит-клуб ARMA S.M.C</h1>
         <h2>Cпециализированный клуб кроссфита, функционального тренинга, единоборств, тяжелой атлетики</h2>
-        <a class="button" href="#">Читать</a>
+        <a class="button colored" href="arma.html">Читать</a>
       </div>
     </div>
     <ul class="companies main-wrapper">
       <li>
-        <article class="compared">
-          <h2>Кроссфит-студии</h2>
-          <div class="company">
-            <img src="./images/companies/arma/preview.png" />
-            <h3>ARMA S.M.C</h3>
-            <h4>Москва</h4>
-          </div>
-          <div class="company">
-            <img src="./images/companies/crossfit/preview.png" />
-            <h3>CrossFit NYC</h3>
-            <h4>Нью-Йорк</h4>
-          </div>
-        </article>
+        {{ compared("Кроссфит-студия", arma, crossfit) }}
       </li>
       <li>
-        <article class="compared">
-          <h2>Кроссфит-студии</h2>
-          <div class="company">
-            <img src="./images/companies/arma/preview.png" />
-            <h3>ARMA S.M.C</h3>
-            <h4>Москва</h4>
-          </div>
-          <div class="company">
-            <img src="./images/companies/crossfit/preview.png" />
-            <h3>CrossFit NYC</h3>
-            <h4>Нью-Йорк</h4>
-          </div>
-        </article>
+        {{ compared("Агенство кибербезопасности", group_ib, mandalay) }}
       </li>
       <li>
-        <article class="compared">
-          <h2>Кроссфит-студии</h2>
-          <div class="company">
-            <img src="./images/companies/arma/preview.png" />
-            <h3>ARMA S.M.C</h3>
-            <h4>Москва</h4>
-          </div>
-          <div class="company">
-            <img src="./images/companies/crossfit/preview.png" />
-            <h3>CrossFit NYC</h3>
-            <h4>Нью-Йорк</h4>
-          </div>
-        </article>
+        {{ compared("Пекарня", bakery_brothers, zeit_fur_brot) }}
       </li>
     </ul>
   </div>

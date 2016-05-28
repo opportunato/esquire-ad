@@ -1,7 +1,11 @@
+.main {
+  height: 100%;
+}
+
 .root {
   position: relative;
-  padding-top: 208px;
-  height: 545px;
+  height: calc(100% - 270px);
+  min-height: 545px;
 
   background: url("../images/bg.jpg") center;
   background-size: cover;
@@ -73,8 +77,9 @@
 }
 
 .root-content {
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .root-content > h1 {
@@ -108,6 +113,8 @@
 }
 
 .companies > li {
+  position: relative;
+
   float: left;
   border-right: 1px solid #979797;
   margin-right: 3%;
@@ -122,6 +129,28 @@
 .companies > li:last-child {
   border-right: none;
   margin-right: 0;
+}
+
+.companies > li:nth-child(2) > .compared,
+.companies > li:nth-child(3) > .compared {
+  opacity: 0.7;
+}
+
+.companies > li:nth-child(2):after,
+.companies > li:nth-child(3):after {
+  content: 'Скоро';
+
+  position: absolute;
+  top: 50%; left: 45%;
+  transform: translate(-50%, -50%);
+
+  color: #EFAAC6;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.companies > li:nth-child(3):after {
+  color: #85B7CF;
 }
 
 .compared > h2 {
@@ -139,6 +168,10 @@
 }
 
 .company {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+
   width: 40%;
 }
 
@@ -175,18 +208,25 @@
   position: relative;
   margin: 0 auto;
   padding-left: 7px;
-  height: 71px;
-  width: 284px;
+  height: 48px;
+  width: 230px;
 
-  background: url("../images/button.png") no-repeat;
-  background-size: cover;
   color: white;
   font-family: 'Geometria', sans-serif;
   font-size: 16px;
   font-weight: 700;
   text-align: center;
-  line-height: 71px;
+  line-height: 48px;
   text-decoration: none;
+}
+
+.button.colored {
+  background: url("../images/button.png") no-repeat;
+  background-size: cover;
+
+  height: 71px;
+  line-height: 71px;
+  width: 284px;
 }
 
 .button:after,
@@ -200,11 +240,19 @@
 }
 
 .button:after {
-  bottom: 10px;
+  bottom: 0;
   border-top: none;
 }
 
+.colored.button:after {
+  bottom: 10px;
+}
+
 .button:before {
-  top: 10px;
+  top: 0;
   border-bottom: none;
+}
+
+.colored.button:before {
+  top: 10px;
 }
