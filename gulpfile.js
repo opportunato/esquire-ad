@@ -7,6 +7,7 @@ const del = require('del');
 const concatCss = require('gulp-concat-css');
 const autoprefixer = require('gulp-autoprefixer');
 const nunjucksRender = require('gulp-nunjucks-render');
+const data = require('gulp-data');
 const browserSync = require('browser-sync').create();
 
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
@@ -31,6 +32,9 @@ gulp.task('assets', function() {
 
 gulp.task('nunjucks', function() {
   return gulp.src('frontend/pages/**/*.html')
+    .pipe(data(function() {
+      return require('./frontend/data.json')
+    }))
     .pipe(nunjucksRender({
         path: ['frontend/templates']
       }))
