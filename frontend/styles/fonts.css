@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Angelica Pro Title';
+    src: url('../fonts/angleciaprotitleregular-webfont.woff2') format('woff2'),
+         url('../fonts/angleciaprotitleregular-webfont.woff') format('woff'),
+         url('../fonts/angleciaprotitleregular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Angelica Pro Title';
+    src: url('../fonts/angleciaprotitleblack-webfont.woff2') format('woff2'),
+         url('../fonts/angleciaprotitleblack-webfont.woff') format('woff'),
+         url('../fonts/angleciaprotitleblack-webfont.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geometria';
+    src: url('../fonts/geometria-medium-webfont.woff2') format('woff2'),
+         url('../fonts/geometria-medium-webfont.woff') format('woff'),
+         url('../fonts/geometria-medium-webfont.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geometria';
+    src: url('../fonts/geometria-bold-webfont.woff2') format('woff2'),
+         url('../fonts/geometria-bold-webfont.woff') format('woff'),
+         url('../fonts/geometria-bold-webfont.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geometria';
+    src: url('../fonts/geometria-extablack-webfont.woff2') format('woff2'),
+         url('../fonts/geometria-extablack-webfont.woff') format('woff'),
+         url('../fonts/geometria-extablack-webfont.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geometria';
+    src: url('../fonts/geometria-heavy-webfont.woff2') format('woff2'),
+         url('../fonts/geometria-heavy-webfont.woff') format('woff'),
+         url('../fonts/geometria-heavy-webfont.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}

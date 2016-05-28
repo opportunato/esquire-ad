@@ -1,0 +1,32 @@
+{
+  "name": "esquire-ad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opportunato/esquire-ad.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/opportunato/esquire-ad/issues"
+  },
+  "homepage": "https://github.com/opportunato/esquire-ad#readme",
+  "devDependencies": {
+    "browser-sync": "^2.12.10",
+    "del": "^2.2.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-if": "^2.0.1",
+    "gulp-nunjucks-render": "^2.0.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylus": "^2.4.0"
+  },
+  "dependencies": {}
+}
