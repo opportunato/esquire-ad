@@ -14,7 +14,7 @@
         <img src="./images/sponsor-otkritie.png" />
       </div>
     </nav>
-    <header style="background-image:url(../images/companies/{{data.key}}/bg.jpg);">
+    <header style="background-image:url(./images/companies/{{data.key}}/bg.jpg);">
       <div class="center-wrapper">
         <h1>{{ data.title }}</h1>
         <h2>{{ data.description }}</h2>
@@ -41,14 +41,14 @@
             <h3>{{ block.content }}</h3>
           {% elif block.type == "image" %}
             <figure>
-              <p><img src="../images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
+              <p><img src="./images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
               {% if block.caption %}
                 <figcaption>{{ block.caption }}</figcaption>
               {% endif %}
             </figure>
           {% elif block.type == "slider" %}
             <figure class="slider">
-              <p><img src="../images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
+              <p><img src="./images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
               {% if block.caption %}
                 <figcaption>{{ block.caption }}</figcaption>
               {% endif %}
@@ -56,7 +56,7 @@
           {% elif block.type == "images" %}
             <figure class="group">
               {% for image in block.content %}
-                <p><img src="../images/companies/{{data.key}}/photos/{{image}}.jpg" /></p>
+                <p><img src="./images/companies/{{data.key}}/photos/{{image}}.jpg" /></p>
               {% endfor %}
             </figure>
           {% endif %}
