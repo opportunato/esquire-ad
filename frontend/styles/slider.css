@@ -1,0 +1,29 @@
+/**
+ * (optional) define here the style definitions which should be applied on the slider container
+ * e.g. width including further controls like arrows etc.
+ */
+.slider {
+  height: 100%;
+  width: 100%;
+}
+
+.frame {
+  height: 100%;
+  position: relative;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.slides {
+  height: 100%;
+  display: inline-block;
+}
+
+.slides > li {
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  width: 100vw;
+}

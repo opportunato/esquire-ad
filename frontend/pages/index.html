@@ -19,8 +19,8 @@
 
 {% block content %}
   <div class="main">
-    <div class="root">
-      <nav class="root-nav main-wrapper">
+    <div class="index">
+      <nav class="index-nav main-wrapper">
         <h1>Бизнес-близнецы</h1>
         <h2>Чем отличаются похожие компании из разных частей света</h2>
         <div class="sponsor-tochka">
@@ -30,10 +30,37 @@
       <div class="sponsor-otkritie">
         <img src="./images/sponsor-otkritie.png" />
       </div>
-      <div class="root-content">
-        <h1>Кроссфит-клуб ARMA S.M.C</h1>
-        <h2>Cпециализированный клуб кроссфита, функционального тренинга, единоборств, тяжелой атлетики</h2>
-        <a class="button colored" href="arma.html">Читать</a>
+      <div class="slider js_slider">
+        <div class="frame js_frame">
+          <ul class="slides js_slides">
+            <li>
+              <div class="index-slide">
+                <div class="index-wrapper">
+                  <h1>Кроссфит-клуб ARMA S.M.C</h1>
+                  <h2>Cпециализированный клуб кроссфита, функционального тренинга, единоборств, тяжелой атлетики</h2>
+                  <a class="button colored" href="arma.html">Читать</a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="index-slide">
+                <div class="index-wrapper">
+                  <h1>Кроссфит-клуб ARMA S.M.C</h1>
+                  <h2>Cпециализированный клуб кроссфита, функционального тренинга, единоборств, тяжелой атлетики</h2>
+                  <a class="button colored" href="arma.html">Читать</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <span class="js_prev prev">
+          <img src="./images/arrow-prev.png" />
+        </span>
+
+        <span class="js_next next">
+          <img src="./images/arrow-next.png" />
+        </span>
       </div>
     </div>
     <ul class="companies main-wrapper">
@@ -48,4 +75,5 @@
       </li>
     </ul>
   </div>
+  <script src="./js/app.js"></script>
 {% endblock %}

@@ -2,17 +2,6 @@
   height: 100%;
 }
 
-.root {
-  position: relative;
-  height: calc(100% - 270px);
-  min-height: 545px;
-
-  background: url("../images/bg.jpg") center;
-  background-size: cover;
-  color: white;
-  font-family: 'Geometria', sans-serif;
-}
-
 .main-wrapper {
   margin: 0 auto;
   width: calc(100% - 250px);
@@ -25,13 +14,24 @@
   transform: translate(-50%, -50%);
 }
 
-.root-nav {
+.index {
+  position: relative;
+  height: calc(100% - 270px);
+  min-height: 545px;
+
+  color: white;
+  font-family: 'Geometria', sans-serif;
+}
+
+.index-nav {
   position: absolute;
   top: 25px; left: 50%;
   transform: translateX(-50%);
+
+  z-index: 1;
 }
 
-.root-nav > h1 {
+.index-nav > h1 {
   position: absolute;
   top: 0; left: 0;
 
@@ -43,7 +43,7 @@
   line-height: 1.1;
 }
 
-.root-nav > h2 {
+.index-nav > h2 {
   position: absolute;
   top: 10px; left: 50%;
   transform: translateX(-50%);
@@ -56,7 +56,7 @@
   text-align: center;
 }
 
-.root-nav .sponsor-tochka {
+.index-nav .sponsor-tochka {
   position: absolute;
   right: 0; top: 5px;
 }
@@ -76,28 +76,50 @@
   width: 56px;
 }
 
-.root-content {
+.js_prev, .js_next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  cursor: pointer;
+}
+
+.js_prev {
+  right: calc(100% - 250px/2);
+}
+
+.js_next {
+  left: calc(100% - 250px/2);
+}
+
+.index-slide {
+  height: 100%;
+  background: url("../images/bg.jpg") center;
+  background-size: cover;
+}
+
+.index-wrapper {
   position: absolute;
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-}
 
-.root-content > h1 {
-  margin-bottom: 30px;
+   > h1 {
+    margin-bottom: 30px;
 
-  font-family: 'Angelica Pro Title', serif;
-  font-size: 36px;
-  font-weight: 900;
-  text-align: center;
-}
+    font-family: 'Angelica Pro Title', serif;
+    font-size: 36px;
+    font-weight: 900;
+    text-align: center;
+  }
 
-.root-content > h2 {
-  margin-bottom: 60px;
+  > h2 {
+    margin-bottom: 60px;
 
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.5;
-  text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+  }
 }
 
 .companies {
