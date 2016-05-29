@@ -1,8 +1,80 @@
 <!-- layout.nunjucks -->
 {% extends "layout.html" %}
 
+{% macro article(data, crossdata, isLeft) %}
+<article class="article {{ 'left' if isLeft else 'right' }}">
+  <header style="background-image:url(./images/companies/{{data.key}}/bg.jpg);">
+    <div class="center-wrapper">
+      <h1>{{ data.title }}</h1>
+      <h2>{{ data.description }}</h2>
+    </div>
+    <ul class="info main-wrapper">
+      <li>
+        <div>Город</div>
+        <div>{{ data.city }}</div>
+      </li>
+      <li>
+        <div>Год основания</div>
+        <div>{{ data.year }}</div>
+      </li>
+      <li>
+        <div>Количество сотрудников</div>
+        <div>{{ data.employee_number }}</div>
+      </li>
+    </ul>
+  </header>
+  <div class="article-content">
+    {% for block in data.content %}
+      {% if block.type %}
+        {% if block.type == "header" %}
+          <h3>{{ block.content }}</h3>
+        {% elif block.type == "image" %}
+          <figure>
+            <p><img src="./images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
+            {% if block.caption %}
+              <figcaption>{{ block.caption }}</figcaption>
+            {% endif %}
+          </figure>
+        {% elif block.type == "slider" %}
+          <figure class="slider">
+            <p><img src="./images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
+            {% if block.caption %}
+              <figcaption>{{ block.caption }}</figcaption>
+            {% endif %}
+          </figure>
+        {% elif block.type == "images" %}
+          <figure class="group">
+            {% for image in block.content %}
+              <p><img src="./images/companies/{{data.key}}/photos/{{image}}.jpg" /></p>
+            {% endfor %}
+          </figure>
+        {% endif %}
+      {% else %}
+        {% if loop.index == 1 %}
+          <p class="intro">{{ block }}</p>
+        {% else %}
+          <p>{{ block }}</p>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <footer>
+    <h3>Сравнить с</h3>
+    <h1>{{ crossdata.short_title }}</h1>
+    <h2>{{ crossdata.city_description }}</h2>
+    <a href="{{crossdata.key}}.html" class="button">Читать</a>
+  </footer>
+  <div class="ad">
+    <div class="legal">
+      ПАО «Ханты-Мансийский банк Открытие». www.openbank.ru Генеральная лицензия Банка России №1971 от 05.11.2014<br/>
+      Филиал «Бизнес онлайн» ОГРН: 1028600001880 ИНН: 8601000666 Корреспондентский счёт: 30101810600000000999 БИК: 044583999 Юридический адрес: 117216, Москва, Старокачаловская 1, корпус 2
+    </div>
+  </div>
+</article>
+{% endmacro %}
+
 {% block content %}
-  <main class="article">
+  <div class="articles-wrapper">
     <nav>
       <div class="main-wrapper">
         <h1>Бизнес-близнецы</h1>
@@ -14,72 +86,51 @@
         <img src="./images/sponsor-otkritie.png" />
       </div>
     </nav>
-    <header style="background-image:url(./images/companies/{{data.key}}/bg.jpg);">
-      <div class="center-wrapper">
-        <h1>{{ data.title }}</h1>
-        <h2>{{ data.description }}</h2>
-      </div>
-      <ul class="info main-wrapper">
-        <li>
-          <div>Город</div>
-          <div>{{ data.city }}</div>
-        </li>
-        <li>
-          <div>Год основания</div>
-          <div>{{ data.year }}</div>
-        </li>
-        <li>
-          <div>Количество сотрудников</div>
-          <div>{{ data.employee_number }}</div>
-        </li>
-      </ul>
-    </header>
-    <div class="article-content">
-      {% for block in data.content %}
-        {% if block.type %}
-          {% if block.type == "header" %}
-            <h3>{{ block.content }}</h3>
-          {% elif block.type == "image" %}
-            <figure>
-              <p><img src="./images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
-              {% if block.caption %}
-                <figcaption>{{ block.caption }}</figcaption>
-              {% endif %}
-            </figure>
-          {% elif block.type == "slider" %}
-            <figure class="slider">
-              <p><img src="./images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
-              {% if block.caption %}
-                <figcaption>{{ block.caption }}</figcaption>
-              {% endif %}
-            </figure>
-          {% elif block.type == "images" %}
-            <figure class="group">
-              {% for image in block.content %}
-                <p><img src="./images/companies/{{data.key}}/photos/{{image}}.jpg" /></p>
-              {% endfor %}
-            </figure>
-          {% endif %}
-        {% else %}
-          {% if loop.index == 1 %}
-            <p class="intro">{{ block }}</p>
-          {% else %}
-            <p>{{ block }}</p>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
+
+    {{ article(data, crossdata, true, true) }}
+    {{ article(crossdata, data, false, false) }}
+
+    <div class="next-article">
+      <button class="next-button">{{ data.city }}</button>
+      <button class="next-button">{{ crossdata.city }}</button>
     </div>
-    <footer>
-      <h3>Сравнить с</h3>
-      <h1>{{ crossdata.short_title }}</h1>
-      <h2>{{ crossdata.city_description }}</h2>
-      <a href="{{crossdata.key}}.html" class="button">Читать</a>
-    </footer>
-    <div class="ad">
-      <div class="legal">
-        ПАО «Ханты-Мансийский банк Открытие». www.openbank.ru Генеральная лицензия Банка России №1971 от 05.11.2014<br/>
-        Филиал «Бизнес онлайн» ОГРН: 1028600001880 ИНН: 8601000666 Корреспондентский счёт: 30101810600000000999 БИК: 044583999 Юридический адрес: 117216, Москва, Старокачаловская 1, корпус 2
-      </div>
-    </div>
-  </main>
+  </div>
+  <script>
+    function hasClass(el, className) {
+      if (el.classList) {
+        return el.classList.contains(className);
+      } else {
+        return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+      }
+    };
+
+    function removeClass(el, className) {
+      if (el.classList) {
+        el.classList.remove(className);
+      } else {
+        el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+      }
+    };
+
+    function addClass(el, className) {
+      if (el.classList) {
+        el.classList.add(className);
+      } else {
+        el.className += ' ' + className;
+      }
+    };
+
+    function toggleClass(el, className) {
+      if (hasClass(el, className)) {
+        removeClass(el, className);
+      } else {
+        addClass(el, className);
+      }
+    }
+
+    document.querySelector(".next-button")
+      .addEventListener('click', function(e) {
+        toggleClass(document.querySelector(".articles-wrapper"), "right");
+      });
+  </script>
 {% endblock %}

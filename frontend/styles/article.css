@@ -1,16 +1,54 @@
-.article > nav {
-  height: 80px;
-  background: #231F20;
-  color: white;
-  font-family: 'Geometria', serif;
+$navHeight: 80px;
+$contentWidth: 772px;
+
+.articles-wrapper {
+  position: relative;
 }
 
-.article > nav .main-wrapper {
+.article {
+  padding-top: $navHeight;
+  width: 100%;
+
+  position: absolute;
+  top: 0;
+  transition: 1s left ease-in-out;
+}
+
+.article.left {
+  left: 0;
+}
+
+.article.right {
+  left: 100%;
+}
+
+.articles-wrapper.right > .article.left {
+  left: -100%;
+}
+
+.articles-wrapper.right > .article.right {
+  left: 0;
+}
+
+.articles-wrapper > nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  height: $navHeight;
+  background: $primaryColor;
+  color: white;
+  font-family: 'Geometria', serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.articles-wrapper > nav .main-wrapper {
   height: 100%;
   position: relative;
 }
 
-.article > nav h1 {
+.articles-wrapper > nav h1 {
   position: absolute;
   left: 0; top: 50%;
   transform: translateY(-50%);
@@ -19,7 +57,7 @@
   font-weight: 900;
 }
 
-.article > nav .sponsor-tochka {
+.articles-wrapper > nav .sponsor-tochka {
   position: absolute;
   right: 0; top: 50%;
   transform: translateY(-50%);
@@ -68,6 +106,10 @@
   border-right: 1px solid #979797;
 }
 
+.article .info li:last-child {
+  border-right: none;
+}
+
 .article .info li div {
   font-size: 14px;
   text-align: center;
@@ -86,7 +128,7 @@
 .article-content {
   margin: 0 auto;
   width: 100%;
-  max-width: 772px;
+  max-width: $contentWidth;
 
   font-size: 17px;
 }
@@ -116,7 +158,7 @@
 .article-content > .group,
 .article-content > .slider {
   position: relative;
-  left: calc((722px - 2 * 573px - 24px) / 2);
+  left: calc(($contentWidth - 2 * 573px - 24px) / 2);
 
   width: calc(2 * 573px + 24px);
 }
@@ -187,7 +229,7 @@ footer > h2 {
 
   margin: 0 auto;
   height: 430px;
-  max-width: 772px;
+  max-width: $contentWidth;
 
   background: url("../images/sponsor-tochka-footer.png") 30% bottom no-repeat;
   background-size: 420px auto;
@@ -201,4 +243,68 @@ footer > h2 {
 
   position: absolute;
   bottom: 60px;
+}
+
+.next-article {
+  position: fixed;
+  left: calc(((100% - $contentWidth)/2) + $contentWidth + 150px);
+  top: 50%;
+  margin-top: -44px;
+
+  width: 88px;
+  height: 88px;
+
+  background: $primaryColor;
+  border-radius: 100%;
+
+  transition: left 1s ease-in-out;
+}
+
+.next-article button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-family: 'Geometria';
+  font-size: 14px;
+  height: 25px;
+  width: 150px;
+  background-repeat: no-repeat;
+  background-size: auto 25px;
+  outline: 0;
+  cursor: pointer;
+}
+
+.next-article button:first-child {
+  left: calc(-120px);
+
+  background-image: url('../images/arrow-prev.png');
+  background-position: right center;
+}
+
+.next-article button:last-child {
+  left: calc(60px);
+
+  background-image: url('../images/arrow-next.png');
+  background-position: left center;
+}
+
+.next-article:after {
+  content: '';
+  position: fixed;
+  width: 3px;
+  height: calc(100% - $navHeight);
+  top: $navHeight;
+  left: calc(((100% - $contentWidth)/2) + $contentWidth + 150px + 42px);
+
+  background: $primaryColor;
+  transition: left 1s ease-in-out;
+}
+
+.articles-wrapper.right > .next-article {
+  left: calc(((100% - $contentWidth)/2) - 200px);
+}
+
+.articles-wrapper.right > .next-article:after {
+  left: calc(((100% - $contentWidth)/2) - 200px + 42px);
 }

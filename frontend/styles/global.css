@@ -13,7 +13,7 @@ body {
 
 body {
   background: #F7F3F2;
-  color: #231F20;
+  color: $primaryColor;
   font-family: 'Angelica Pro Title', serif;
 }
 
@@ -33,4 +33,10 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  -webkit-appearance: none;
 }
