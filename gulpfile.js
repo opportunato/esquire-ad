@@ -21,7 +21,11 @@ const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'developm
 
 const variables = {
   primaryColor: '#231F20',
-  mobile: '500px'
+  activeColor: '#FF7979',
+  mobile: '500px',
+  tablet: '900px',
+  secondaryFont: "'Geometria', sans-serif",
+  mobilePadding: '16px'
 };
 
 gulp.task('styles', function() {

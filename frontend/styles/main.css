@@ -2,5 +2,6 @@
 @import url("./fonts.css");
 @import url("./global.css");
 @import url("./slider.css");
-@import url("./article.css");
+@import url("./shared.css");
 @import url("./index.css");
+@import url("./article.css");

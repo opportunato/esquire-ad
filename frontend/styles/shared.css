@@ -1,0 +1,150 @@
+.top-nav {
+  display: block;
+
+  position: absolute;
+  top: 20px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  color: white;
+  font-family: $secondaryFont;
+
+  @media (min-width: $mobile) {
+    top: 25px;
+  }
+
+  > * {
+    position: absolute;
+  }
+
+  > h1 {
+    left: $mobilePadding;
+    width: 100px;
+
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+
+    @media (min-width: $mobile) {
+      font-size: 30px;
+      width: auto;
+    }
+  }
+
+  .sponsor-tochka {
+    right: $mobilePadding;
+    top: 5px;
+
+    > img {
+      width: 97px;
+
+      @media (min-width: $mobile) {
+        width: 132px;
+      }
+    }
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.sponsor-otkritie {
+  display: none;
+
+  position: absolute;
+  right: 47px;
+  top: 0;
+  z-index: 2;
+
+  @media (min-width: $mobile) {
+    display: block;
+  }
+
+  > img {
+    width: 56px;
+  }
+}
+
+.button {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding-left: 7px;
+  height: 36px;
+  width: 175px;
+
+  color: white;
+  font-family: 'Geometria', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 36px;
+  text-decoration: none;
+
+  @media (min-width: $mobile) {
+    font-size: 16px;
+    height: 48px;
+    line-height: 48px;
+    width: 230px;
+  }
+
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    width: 175px;
+    height: 15px;
+    left: 53%; transform: translateX(-50%);
+    border: 2px solid white;
+
+    @media (min-width: $mobile) {
+      height: 19px;
+      width: 230px;
+    }
+  }
+
+  &:after {
+    bottom: 0;
+    border-top: none;
+  }
+
+  &:before {
+    top: 0;
+    border-bottom: none;
+  }
+
+  &.colored {
+    background: url("../images/button.png") no-repeat;
+    background-size: cover;
+
+    height: 55px;
+    line-height: 55px;
+    width: 218px;
+
+    @media (min-width: $mobile) {
+      height: 71px;
+      line-height: 71px;
+      width: 284px;
+    }
+
+    &:after {
+      bottom: 8px;
+
+      @media (min-width: $mobile) {
+        bottom: 10px;
+      }
+    }
+
+    &:before {
+      top: 8px;
+
+      @media (min-width: $mobile) {
+        top: 10px;
+      }
+    }
+  }
+}

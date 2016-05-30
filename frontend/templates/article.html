@@ -1,28 +1,28 @@
 <!-- layout.nunjucks -->
 {% extends "layout.html" %}
 
-{% macro article(data, crossdata, isLeft) %}
+{% macro article(data, other, isLeft) %}
 <article class="article {{ 'left' if isLeft else 'right' }}">
-  <header style="background-image:url(./images/companies/{{data.key}}/bg.jpg);">
-    <div class="center-wrapper">
+  <div class="header-wrapper" style="background-image:url(./images/companies/{{data.key}}/bg.jpg);">
+    <header>
       <h1>{{ data.title }}</h1>
       <h2>{{ data.description }}</h2>
-    </div>
-    <ul class="info main-wrapper">
-      <li>
-        <div>Город</div>
-        <div>{{ data.city }}</div>
-      </li>
-      <li>
-        <div>Год основания</div>
-        <div>{{ data.year }}</div>
-      </li>
-      <li>
-        <div>Количество сотрудников</div>
-        <div>{{ data.employee_number }}</div>
-      </li>
-    </ul>
-  </header>
+    </header>
+  </div>
+  <ul class="info main-wrapper">
+    <li>
+      <p>Город:</p>
+      <p>{{ data.city }}</p>
+    </li>
+    <li>
+      <p>Год основания:</p>
+      <p>{{ data.year }}</p>
+    </li>
+    <li>
+      <p>Количество сотрудников:</p>
+      <p>{{ data.employee_number }}</p>
+    </li>
+  </ul>
   <div class="article-content">
     {% for block in data.content %}
       {% if block.type %}
@@ -36,12 +36,27 @@
             {% endif %}
           </figure>
         {% elif block.type == "slider" %}
-          <figure class="slider">
-            <p><img src="./images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
-            {% if block.caption %}
-              <figcaption>{{ block.caption }}</figcaption>
-            {% endif %}
-          </figure>
+          <div class="article-slider js_slider">
+            <div class="frame js_frame">
+              <ul class="slides js_slides">
+                {% for image in block.content %}
+                  <li>
+                    <figure>
+                      <p><img src="./images/companies/{{data.key}}/photos/{{image}}.jpg" /></p>
+                    </figure>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <span class="js_prev prev">
+              <img src="./images/arrow-prev.png" />
+            </span>
+
+            <span class="js_next next">
+              <img src="./images/arrow-next.png" />
+            </span>
+          </div>
         {% elif block.type == "images" %}
           <figure class="group">
             {% for image in block.content %}
@@ -57,14 +72,21 @@
         {% endif %}
       {% endif %}
     {% endfor %}
+    <div class="authors">
+      <p>Интервью: {{ data.writer }}</p>
+      <p>Фото: {{ data.photographer }}</p>
+    </div>
   </div>
   <footer>
     <h3>Сравнить с</h3>
-    <h1>{{ crossdata.short_title }}</h1>
-    <h2>{{ crossdata.city_description }}</h2>
+    <h1>{{ other.short_title }}</h1>
+    <h2>{{ other.city_description }}</h2>
     <a href="{{crossdata.key}}.html" class="button">Читать</a>
   </footer>
   <div class="ad">
+    <a href="https://tochka.com/" target="_blank" class="sponsor">
+      <img src="./images/sponsor-tochka-footer.png" />
+    </a>
     <div class="legal">
       ПАО «Ханты-Мансийский банк Открытие». www.openbank.ru Генеральная лицензия Банка России №1971 от 05.11.2014<br/>
       Филиал «Бизнес онлайн» ОГРН: 1028600001880 ИНН: 8601000666 Корреспондентский счёт: 30101810600000000999 БИК: 044583999 Юридический адрес: 117216, Москва, Старокачаловская 1, корпус 2
@@ -76,61 +98,31 @@
 {% block content %}
   <div class="articles-wrapper">
     <nav>
-      <div class="main-wrapper">
-        <h1>Бизнес-близнецы</h1>
-        <div class="sponsor-tochka">
-          <img src="./images/sponsor-tochka.png" />
-        </div>
-      </div>
-      <div class="sponsor-otkritie">
-        <img src="./images/sponsor-otkritie.png" />
+      <div class="switcher">
+        <a class="current" href="./{{left.key}}.html" />{{ left.city }}</a>
+        <div class="toggle"></div>
+        <a href="./{{right.key}}.html" />{{ right.city }}</a>
       </div>
     </nav>
 
-    {{ article(data, crossdata, true, true) }}
-    {{ article(crossdata, data, false, false) }}
+    <div class="top-nav main-wrapper">
+      <h1>Бизнес-близнецы</h1>
+      <div class="sponsor-tochka">
+        <img src="./images/sponsor-tochka.png" />
+      </div>
+    </div>
+
+    <div class="sponsor-otkritie">
+      <img src="./images/sponsor-otkritie.png" />
+    </div>
+
+    {{ article(left, right, true) }}
+    {{ article(right, left, false) }}
 
     <div class="next-article">
-      <button class="next-button">{{ data.city }}</button>
-      <button class="next-button">{{ crossdata.city }}</button>
+      <button class="next-button">{{ left.city }}</button>
+      <button class="next-button">{{ right.city }}</button>
     </div>
   </div>
-  <script>
-    function hasClass(el, className) {
-      if (el.classList) {
-        return el.classList.contains(className);
-      } else {
-        return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
-      }
-    };
-
-    function removeClass(el, className) {
-      if (el.classList) {
-        el.classList.remove(className);
-      } else {
-        el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-      }
-    };
-
-    function addClass(el, className) {
-      if (el.classList) {
-        el.classList.add(className);
-      } else {
-        el.className += ' ' + className;
-      }
-    };
-
-    function toggleClass(el, className) {
-      if (hasClass(el, className)) {
-        removeClass(el, className);
-      } else {
-        addClass(el, className);
-      }
-    }
-
-    document.querySelector(".next-button")
-      .addEventListener('click', function(e) {
-        toggleClass(document.querySelector(".articles-wrapper"), "right");
-      });
-  </script>
+  <script src="./js/app.js"></script>
 {% endblock %}

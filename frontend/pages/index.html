@@ -1,18 +1,20 @@
 <!-- index.nunjucks -->
 {% extends "layout.html" %}
 
-{% macro company(data) %}
-<a href="{{data.key}}.html" class="company">
-  <img src="./images/companies/{{data.key}}/preview.png" />
+{% macro company(data, active) %}
+<a href="{{data.key}}.html" class="company {{ 'active' if active }}">
+  <div class="avatar">
+    <img src="./images/companies/{{data.key}}/preview.png" />
+  </div>
   <h3>{{ data.short_title }}</h3>
   <h4>{{ data.city }}</h4>
 </a>
 {% endmacro %}
 
-{% macro compared(title, data1, data2) %}
+{% macro compared(title, data1, data2, active) %}
 <article class="compared">
   <h2>{{ title }}</h2>
-  {{ company(data1) }}
+  {{ company(data1, active) }}
   {{ company(data2) }}
 </article>
 {% endmacro %}
@@ -20,16 +22,16 @@
 {% block content %}
   <div class="main">
     <div class="index">
-      <nav class="index-nav main-wrapper">
+      <div class="top-nav main-wrapper">
         <h1>Бизнес-близнецы</h1>
-        <div class="sponsor-tochka">
+        <a href="https://tochka.com/" target="_blank" class="sponsor-tochka">
           <img src="./images/sponsor-tochka.png" />
-        </div>
-      </nav>
-      <h2>Чем отличаются похожие компании из разных частей света</h2>
-      <div class="sponsor-otkritie">
-        <img src="./images/sponsor-otkritie.png" />
+        </a>
       </div>
+      <h2>Чем отличаются похожие компании из разных частей света</h2>
+      <a href="https://www.openbank.ru/" target="_blank" class="sponsor-otkritie">
+        <img src="./images/sponsor-otkritie.png" />
+      </a>
       <div class="index-slider js_slider">
         <div class="frame js_frame">
           <ul class="slides js_slides">
@@ -67,7 +69,7 @@
       <div class="frame js_frame">
         <ul class="slides js_slides">
           <li>
-            {{ compared("Кроссфит-студия", arma, crossfit) }}
+            {{ compared("Кроссфит-студия", arma, crossfit, true) }}
           </li>
           <li>
             {{ compared("Агенство кибербезопасности", group_ib, mandalay) }}
@@ -79,13 +81,24 @@
       </div>
 
       <span class="js_prev prev">
-        <img src="./images/slider-prev.png" />
+        <img src="./images/arrow-prev-dark.png" />
       </span>
 
       <span class="js_next next">
-        <img src="./images/slider-next.png" />
+        <img src="./images/arrow-next-dark.png" />
       </span>
     </div>
+    <ul class="companies main-wrapper">
+      <li>
+        {{ compared("Кроссфит-студия", arma, crossfit, true) }}
+      </li>
+      <li>
+        {{ compared("Агенство кибербезопасности", group_ib, mandalay) }}
+      </li>
+      <li>
+        {{ compared("Пекарня", bakery_brothers, zeit_fur_brot) }}
+      </li>
+    </ul>
   </div>
   <script src="./js/app.js"></script>
 {% endblock %}

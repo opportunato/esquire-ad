@@ -18,6 +18,15 @@
 
 @font-face {
     font-family: 'Geometria';
+    src: url('../fonts/geometria-webfont.woff2') format('woff2'),
+         url('../fonts/geometria-webfont.woff') format('woff'),
+         url('../fonts/geometria-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geometria';
     src: url('../fonts/geometria-medium-webfont.woff2') format('woff2'),
          url('../fonts/geometria-medium-webfont.woff') format('woff'),
          url('../fonts/geometria-medium-webfont.ttf') format('truetype');

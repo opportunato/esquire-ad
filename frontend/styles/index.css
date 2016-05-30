@@ -3,9 +3,8 @@
 }
 
 .main-wrapper {
-  margin: 0 auto;
   width: 100%;
-  padding: 0 16px;
+  padding: 0 $mobilePadding;
 
   @media (min-width: 500px) {
     padding: 0;
@@ -26,11 +25,11 @@
   min-height: 390px;
 
   color: white;
-  font-family: 'Geometria', sans-serif;
+  font-family: $secondaryFont;
 
   @media (min-width: $mobile) {
     height: calc(100% - 270px);
-    min-height: 545px;
+    min-height: 525px;
   }
 
   > h2 {
@@ -50,54 +49,6 @@
       top: 10px;
       bottom: auto;
     }
-  }
-}
-
-.index-nav {
-  position: absolute;
-  top: 20px; left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-
-  @media (min-width: $mobile) {
-    top: 25px;
-  }
-
-  > h1 {
-    float: left;
-    width: 100px;
-
-    font-size: 16px;
-    font-weight: 900;
-    letter-spacing: 0.02em;
-    line-height: 1.1;
-
-    @media (min-width: $mobile) {
-      font-size: 30px;
-      width: 200px;
-    }
-  }
-
-  .sponsor-tochka {
-    float: right;
-    margin-top: 5px;
-
-    > img {
-      width: 132px;
-    }
-  }
-}
-
-.sponsor-otkritie {
-  display: none;
-
-  position: absolute;
-  right: 47px;
-  top: 0;
-  z-index: 1;
-
-  > img {
-    width: 56px;
   }
 }
 
@@ -188,6 +139,19 @@
   }
 }
 
+.companies {
+  display: none;
+  margin-top: 25px;
+
+  @media (min-width: $mobile) {
+    display: block;
+  }
+
+  li {
+    display: inline-block;
+  }
+}
+
 .companies-slider {
   position: relative;
 
@@ -196,8 +160,8 @@
 
   font-family: 'Geometria', sans-serif;
 
-  @media (min-width: 500px) {
-    margin-top: 25px;
+  @media (min-width: $mobile) {
+    display: none;
   }
 
   .slides > li {
@@ -273,6 +237,10 @@
 }
 
 .compared {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+
   h2 {
     margin-bottom: 15px;
 
@@ -284,22 +252,19 @@
       margin-bottom: 25px;
     }
   }
-
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
 }
 
 .company {
   display: inline-block;
   color: inherit;
   text-decoration: none;
+  outline: none;
 
-  width: 40%;
+  width: 140px;
 
-  > img {
+  > .avatar {
+    position: relative;
+
     display: block;
     margin: 0 auto;
     margin-bottom: 8px;
@@ -308,6 +273,19 @@
     @media (min-width: $mobile) {
       margin-bottom: 11px;
       width: 112px;
+    }
+
+    > img {
+      width: 100%;
+    }
+  }
+
+  &.active {
+    color: $activeColor;
+
+    > .avatar {
+      border: 2px solid $activeColor;
+      border-radius: 100%;
     }
   }
 
@@ -327,83 +305,5 @@
 
   > h4 {
     font-weight: 500;
-  }
-}
-
-.button {
-  display: block;
-  position: relative;
-  margin: 0 auto;
-  padding-left: 7px;
-  height: 48px;
-  width: 175px;
-
-  color: white;
-  font-family: 'Geometria', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  text-align: center;
-  line-height: 48px;
-  text-decoration: none;
-
-  @media (min-width: $mobile) {
-    font-size: 16px;
-    width: 230px;
-  }
-
-  &:after,
-  &:before {
-    content: '';
-    position: absolute;
-    width: 175px;
-    height: 15px;
-    left: 53%; transform: translateX(-50%);
-    border: 1px solid white;
-
-    @media (min-width: $mobile) {
-      height: 19px;
-      width: 230px;
-    }
-  }
-
-  &:after {
-    bottom: 0;
-    border-top: none;
-  }
-
-  &:before {
-    top: 0;
-    border-bottom: none;
-  }
-
-  &.colored {
-    background: url("../images/button.png") no-repeat;
-    background-size: cover;
-
-    height: 55px;
-    line-height: 55px;
-    width: 218px;
-
-    @media (min-width: $mobile) {
-      height: 71px;
-      line-height: 71px;
-      width: 284px;
-    }
-
-    &:after {
-      bottom: 8px;
-
-      @media (min-width: $mobile) {
-        bottom: 10px;
-      }
-    }
-
-    &:before {
-      top: 8px;
-
-      @media (min-width: $mobile) {
-        top: 10px;
-      }
-    }
   }
 }
