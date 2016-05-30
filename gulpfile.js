@@ -4,7 +4,7 @@ const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const gulpIf = require('gulp-if');
 const del = require('del');
-const concatCss = require('gulp-concat');
+const concatCss = require('gulp-concat-css');
 const nunjucksRender = require('gulp-nunjucks-render');
 const data = require('gulp-data');
 const uglify = require('gulp-uglify');
@@ -20,18 +20,20 @@ const browserSync = require('browser-sync').create();
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
 const variables = {
-  primaryColor: '#231F20'
+  primaryColor: '#231F20',
+  mobile: '500px'
 };
 
 gulp.task('styles', function() {
-  return gulp.src('frontend/styles/*.css')
+  return gulp.src('frontend/styles/main.css')
     .pipe(gulpIf(isDevelopment, sourcemaps.init()))
     .pipe(postcss([
-      require('postcss-nested'),
+      require('precss'),
+      require('cssnano'),
       require('autoprefixer')({ browsers: ['last 3 versions'] }),
       require('postcss-simple-vars')({ variables: variables })
     ]))
-    .pipe(concatCss("main.css"))
+    .pipe(concatCss('main.css'))
     .pipe(gulpIf(isDevelopment, sourcemaps.write()))
     .pipe(gulp.dest('public/css'));
 });
