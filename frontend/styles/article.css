@@ -674,8 +674,16 @@ $buttonSize: 130px;
   .next-article {
     left: calc(((100% - $contentWidth)/2) - 200px);
 
+    @media (min-width: $extrawidescreen) {
+      left: calc(((100% - $wideContentWidth)/2) - 200px);
+    }
+
     &:after {
       left: calc(((100% - $contentWidth)/2) - 200px + 42px);
+
+      @media (min-width: $extrawidescreen) {
+        left: calc(((100% - $wideContentWidth)/2) - 200px + 42px);
+      }
     }
 
     button:first-child {
