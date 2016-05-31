@@ -32,7 +32,14 @@
           <h3>{{ block.content }}</h3>
         {% elif block.type == "image" %}
           <figure>
-            <p><img src="./images/companies/{{data.key}}/photos/{{block.content}}.jpg" /></p>
+            <p>
+              <picture>
+                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                <source srcset="./images/companies/{{data.key}}/photos/{{block.content}}@2x.jpg" media="(min-width: 500px)">
+                <!--[if IE 9]></video><![endif]-->
+                <img srcset="./images/companies/{{data.key}}/photos/{{block.content}}.jpg">
+              </picture>
+            </p>
             {% if block.caption %}
               <figcaption>{{ block.caption }}</figcaption>
             {% endif %}
@@ -44,7 +51,14 @@
                 {% for image in block.content %}
                   <li>
                     <figure>
-                      <p><img src="./images/companies/{{data.key}}/photos/{{image}}.jpg" /></p>
+                      <p>
+                        <picture>
+                          <!--[if IE 9]><video style="display: none;"><![endif]-->
+                          <source srcset="./images/companies/{{data.key}}/photos/{{image}}@2x.jpg" media="(min-width: 500px)">
+                          <!--[if IE 9]></video><![endif]-->
+                          <img srcset="./images/companies/{{data.key}}/photos/{{image}}.jpg">
+                        </picture>
+                      </p>
                     </figure>
                   </li>
                 {% endfor %}
@@ -62,7 +76,14 @@
         {% elif block.type == "images" %}
           <figure class="group">
             {% for image in block.content %}
-              <p><img src="./images/companies/{{data.key}}/photos/{{image}}.jpg" /></p>
+              <p>
+                <picture>
+                  <!--[if IE 9]><video style="display: none;"><![endif]-->
+                  <source srcset="./images/companies/{{data.key}}/photos/{{image}}@2x.jpg" media="(min-width: 500px)">
+                  <!--[if IE 9]></video><![endif]-->
+                  <img srcset="./images/companies/{{data.key}}/photos/{{image}}.jpg">
+                </picture>
+              </p>
             {% endfor %}
           </figure>
         {% endif %}

@@ -73,6 +73,11 @@ gulp.task('clean', function() {
 gulp.task('assets', function() {
   return gulp.src('frontend/assets/**')
     .pipe(gulp.dest('public'));
+});
+
+gulp.task('picturefill', function() {
+  return gulp.src('frontend/js/picturefill.min.js')
+    .pipe(gulp.dest('./public/js/'));
 })
 
 gulp.task('nunjucks', function() {
@@ -91,7 +96,7 @@ gulp.task('nunjucks', function() {
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'assets', 'nunjucks', 'scripts')));
+gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'assets', 'nunjucks', 'scripts', 'picturefill')));
 
 gulp.task('watch', function() {
   gulp.watch('frontend/styles/**/*.*', gulp.series('styles'));
