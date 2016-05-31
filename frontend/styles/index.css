@@ -83,7 +83,11 @@ $companiesHeightMobile: 177px;
     left: 20px;
 
     @media (min-width: $tablet) {
-      left: 0;
+      left: calc(250px/2);
+    }
+
+    @media (min-width: 1410px) {
+      left: calc(50% - 1160px/2);
     }
   }
 
@@ -91,7 +95,11 @@ $companiesHeightMobile: 177px;
     right: 20px;
 
     @media (min-width: $tablet) {
-      right: 0;
+      right: calc(250px/2);
+    }
+
+    @media (min-width: 1410px) {
+      right: calc(50% - 1160px/2);
     }
   }
 }
@@ -187,7 +195,7 @@ $companiesHeightMobile: 177px;
   position: relative;
 
   width: 100%;
-  margin-top: 10px;
+  padding-top: 10px;
 
   font-family: $secondaryFont;
 
