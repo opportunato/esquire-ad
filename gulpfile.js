@@ -8,6 +8,7 @@ const concatCss = require('gulp-concat-css');
 const nunjucksRender = require('gulp-nunjucks-render');
 const data = require('gulp-data');
 const uglify = require('gulp-uglify');
+const autoprefixer = require('gulp-autoprefixer');
 
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -38,9 +39,11 @@ gulp.task('styles', function() {
     .pipe(postcss([
       require('precss'),
       require('cssnano'),
-      require('autoprefixer')({ browsers: ['last 3 versions'] }),
       require('postcss-simple-vars')({ variables: variables })
     ]))
+    .pipe(autoprefixer({
+			browsers: ['last 3 versions'],
+		}))
     .pipe(concatCss('main.css'))
     .pipe(gulpIf(isDevelopment, sourcemaps.write()))
     .pipe(gulp.dest('public/css'));

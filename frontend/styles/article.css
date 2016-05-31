@@ -63,7 +63,6 @@ $wideContentWidth: 1170px;
     background: $primaryColor;
     color: white;
     font-family: 'Geometria', serif;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
     @media (min-width: $tablet) {
       height: $navHeight;
