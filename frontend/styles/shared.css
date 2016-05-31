@@ -9,65 +9,69 @@
   }
 }
 
-.top-nav {
-  display: block;
-
+.title {
   position: absolute;
-  top: 20px; left: 50%;
-  transform: translateX(-50%);
+  left: $mobilePadding;
+  top: 20px;
+  color: white;
+  font-size: 16px;
   z-index: 1;
 
-  color: white;
   font-family: $secondaryFont;
 
+  @media (min-width: $mobile) {
+    top: 24px;
+    font-size: 30px;
+  }
+
   @media (min-width: $tablet) {
-    top: 25px;
+    left: calc(250px/2);
   }
 
-  > * {
-    position: absolute;
+  @media (min-width: $wrapperWidth) {
+    left: calc(50% - 1160px/2);
   }
 
-  > h1 {
-    left: $mobilePadding;
+  a {
+    display: block;
     width: 100px;
 
-    font-size: 16px;
+    color: inherit;
     font-weight: 900;
     letter-spacing: 0.02em;
     line-height: 1.1;
+    text-decoration: none;
 
-    @media (min-width: $mobile) {
-      font-size: 30px;
+    @media (min-width: $tablet) {
       width: 200px;
     }
+  }
+}
 
-    @media (min-width: $tablet) {
-      left: 0;
-    }
+.sponsor-tochka {
+  position: absolute;
+  top: 24px;
+  right: $mobilePadding;
+  z-index: 1;
+
+  @media (min-width: $mobile) {
+    top: 30px;
   }
 
-  .sponsor-tochka {
-    right: $mobilePadding;
-    top: 5px;
-
-    @media (min-width: $tablet) {
-      right: 0;
-    }
-
-    > img {
-      width: 97px;
-
-      @media (min-width: $mobile) {
-        width: 132px;
-      }
-    }
+  @media (min-width: $tablet) {
+    right: calc(250px/2);
   }
 
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
+  @media (min-width: $wrapperWidth) {
+    right: calc(50% - 1160px/2);
+  }
+
+  > img {
+    width: 97px;
+
+    @media (min-width: $mobile) {
+      width: 132px;
+    }
   }
 }
 
@@ -86,6 +90,10 @@
   > img {
     width: 56px;
   }
+}
+
+.articles-wrapper .sponsor-otkritie {
+  position: fixed;
 }
 
 .button {

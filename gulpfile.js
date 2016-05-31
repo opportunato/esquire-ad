@@ -26,6 +26,7 @@ const variables = {
   smalltablet: '765px',
   tablet: '915px',
   widescreen: '1350px',
+  wrapperWidth: '1410px',
   extrawidescreen: '1800px',
   secondaryFont: "'Geometria', sans-serif",
   mobilePadding: '16px'

@@ -86,7 +86,7 @@ $companiesHeightMobile: 177px;
       left: calc(250px/2);
     }
 
-    @media (min-width: 1410px) {
+    @media (min-width: $wrapperWidth) {
       left: calc(50% - 1160px/2);
     }
   }
@@ -94,7 +94,7 @@ $companiesHeightMobile: 177px;
   .next {
     right: 20px;
 
-    @media (min-width: $tablet) {
+    @media (min-width: $wrapperWidth) {
       right: calc(250px/2);
     }
 

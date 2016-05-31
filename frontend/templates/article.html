@@ -98,7 +98,7 @@
 {% endmacro %}
 
 {% block content %}
-  <div class="articles-wrapper static">
+  <div class="articles-wrapper static {{ 'right' if right.key == current }}">
     <nav>
       <div class="switcher">
         <a class="{{ 'current' if current == left.key }}" href="./{{left.key}}.html" />{{ left.city }}</a>
@@ -107,19 +107,23 @@
       </div>
     </nav>
 
-    <div class="top-nav main-wrapper">
-      <h1>Бизнес-близнецы</h1>
-      <div class="sponsor-tochka">
-        <img src="./images/sponsor-tochka.png" />
-      </div>
+    <div class="title">
+      <a href="/">Бизнес-близнецы</a>
     </div>
-
+    <a href="https://tochka.com/" target="_blank" class="sponsor-tochka">
+      <img src="./images/sponsor-tochka.png" />
+    </a>
     <div class="sponsor-otkritie">
       <img src="./images/sponsor-otkritie.png" />
     </div>
 
-    {{ article(left, right, true) }}
-    {{ article(right, left, false) }}
+    {% if left.key == current %}
+      {{ article(left, right, true) }}
+      {{ article(right, left, false) }}
+    {% else %}
+      {{ article(right, left, false) }}
+      {{ article(left, right, true) }}
+    {% endif %}
 
     <div class="next-article">
       <button class="next-button">{{ left.city }}</button>
