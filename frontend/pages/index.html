@@ -1,6 +1,8 @@
 <!-- index.nunjucks -->
 {% extends "layout.html" %}
 
+{% set meta = meta.index %}
+
 {% macro company(data, active) %}
 <a href="{{data.key}}.html" class="company {{ 'active' if active }}">
   <div class="avatar">

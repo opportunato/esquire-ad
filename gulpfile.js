@@ -80,6 +80,8 @@ gulp.task('nunjucks', function() {
     .pipe(data(function() { return require('./frontend/data/mandalay.json') }))
     .pipe(data(function() { return require('./frontend/data/bakery_brothers.json') }))
     .pipe(data(function() { return require('./frontend/data/zeit_fur_brot.json') }))
+    .pipe(data(function() { return require('./frontend/data/meta.json') }))
+    .pipe(data(function() { return { "production": !isDevelopment } }))
     .pipe(nunjucksRender({
         path: ['frontend/templates']
       }))
