@@ -22,8 +22,10 @@ const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'developm
 const variables = {
   primaryColor: '#231F20',
   activeColor: '#FF7979',
-  mobile: '500px',
-  tablet: '900px',
+  mobile: '450px',
+  tablet: '915px',
+  widescreen: '1350px',
+  extrawidescreen: '1800px',
   secondaryFont: "'Geometria', sans-serif",
   mobilePadding: '16px'
 };

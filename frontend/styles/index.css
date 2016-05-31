@@ -1,34 +1,20 @@
+$companiesHeight: 270px;
+$companiesHeightMobile: 177px;
+
 .main {
   height: 100%;
 }
 
-.main-wrapper {
-  width: 100%;
-  padding: 0 $mobilePadding;
-
-  @media (min-width: 500px) {
-    padding: 0;
-    width: calc(100% - 250px);
-    max-width: 1160px;
-  }
-}
-
-.center-wrapper {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .index {
   position: relative;
-  height: calc(100% - 177px);
+  height: calc(100% - $companiesHeightMobile);
   min-height: 390px;
 
   color: white;
   font-family: $secondaryFont;
 
-  @media (min-width: $mobile) {
-    height: calc(100% - 270px);
+  @media (min-width: $tablet) {
+    height: calc(100% - $companiesHeight);
     min-height: 525px;
   }
 
@@ -45,8 +31,8 @@
     line-height: 1.5;
     text-align: center;
 
-    @media (min-width: $mobile) {
-      top: 10px;
+    @media (min-width: $tablet) {
+      top: 25px;
       bottom: auto;
     }
   }
@@ -69,6 +55,13 @@
     }
   }
 
+  .main-wrapper {
+    position: absolute;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+  }
+
   .prev, .next {
     position: absolute;
     top: 50%;
@@ -89,16 +82,16 @@
   .prev {
     left: 20px;
 
-    @media (min-width: $mobile) {
-      right: calc(100% - 250px/2);
+    @media (min-width: $tablet) {
+      left: 0;
     }
   }
 
   .next {
     right: 20px;
 
-    @media (min-width: $mobile) {
-      left: calc(100% - 250px/2);
+    @media (min-width: $tablet) {
+      right: 0;
     }
   }
 }
@@ -114,7 +107,11 @@
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
 
-   > h1 {
+  @media (min-width: $mobile) {
+    top: 55%;
+  }
+
+  > h1 {
     margin-bottom: 30px;
 
     font-family: 'Angelica Pro Title', serif;
@@ -124,6 +121,10 @@
     text-align: center;
 
     @media (min-width: $mobile) {
+      font-size: 30px;
+    }
+
+    @media (min-width: $tablet) {
       font-size: 36px;
     }
   }
@@ -136,16 +137,27 @@
     font-weight: 500;
     line-height: 1.5;
     text-align: center;
+
+    @media (min-width: $tablet) {
+      display: block;
+    }
   }
 }
 
 .companies {
   display: none;
-  margin-top: 25px;
+  margin-top: 15px;
+  text-align: center;
 
   @media (min-width: $mobile) {
     display: block;
   }
+
+  @media (min-width: $tablet) {
+    margin-top: 25px;
+  }
+
+  font-family: $secondaryFont;
 
   li {
     display: inline-block;
@@ -158,7 +170,7 @@
   width: 100%;
   margin-top: 10px;
 
-  font-family: 'Geometria', sans-serif;
+  font-family: $secondaryFont;
 
   @media (min-width: $mobile) {
     display: none;
@@ -237,9 +249,13 @@
 }
 
 .compared {
-  width: 300px;
+  width: 250px;
   margin: 0 auto;
   text-align: center;
+
+  @media (min-width: $tablet) {
+    width: 300px;
+  }
 
   h2 {
     margin-bottom: 15px;
@@ -248,7 +264,7 @@
     font-weight: 800;
     text-align: center;
 
-    @media (min-width: $mobile) {
+    @media (min-width: $tablet) {
       margin-bottom: 25px;
     }
   }
@@ -262,6 +278,14 @@
 
   width: 140px;
 
+  @media (min-width: $mobile) {
+    width: 120px;
+  }
+
+  @media (min-width: $tablet) {
+    width: 140px;
+  }
+
   > .avatar {
     position: relative;
 
@@ -270,7 +294,7 @@
     margin-bottom: 8px;
     width: 73px;
 
-    @media (min-width: $mobile) {
+    @media (min-width: $tablet) {
       margin-bottom: 11px;
       width: 112px;
     }
@@ -292,13 +316,14 @@
   > h3, h4 {
     font-size: 14px;
     text-align: center;
+    white-space: nowrap;
   }
 
   > h3 {
     margin-bottom: 2px;
     font-weight: 800;
 
-    @media (min-width: $mobile) {
+    @media (min-width: $tablet) {
       margin-bottom: 5px;
     }
   }

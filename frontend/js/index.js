@@ -25,12 +25,12 @@ function forEachSelector(selector, callback) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  forEachSelector('.js_slider', function(element) {
-    lory(element, {});
+  forEachSelector('.js_slider', function(el) {
+    lory(el, {});
   });
 
-  document.querySelector('.index-slider')
-    .addEventListener('after.lory.slide', function(e) {
+  forEachSelector('.index-slider', function(el) {
+    el.addEventListener('after.lory.slide', function(e) {
       forEachSelector('.companies-slider li', function(el) {
         removeClass(el, 'active');
       });
@@ -39,9 +39,43 @@ document.addEventListener('DOMContentLoaded', function() {
       var companyIndex = slideIndex/2;
       addClass(document.querySelector('.companies-slider li:nth-child(' + compareIndex + ') company:nth-child(' + companyIndex + ')'), 'active');
     });
+  });
 
-  // document.querySelector(".next-button")
-  //   .addEventListener('click', function(e) {
-  //     toggleClass(document.querySelector(".articles-wrapper"), "right");
-  //   });
+  var nextArticle = document.querySelector('.next-article');
+
+  if (nextArticle) {
+    nextArticle.querySelector('.next-button:first-child')
+      .addEventListener('click', function(e) {
+        removeClass(document.querySelector(".articles-wrapper"), "static");
+        setTimeout(function() {
+          removeClass(document.querySelector(".articles-wrapper"), "right");
+          setTimeout(function() {
+            addClass(document.querySelector(".articles-wrapper"), "static");
+          }, 1100);
+        }, 10);
+        window.scrollTo(0, 446);
+      });
+    nextArticle.querySelector('.next-button:last-child')
+      .addEventListener('click', function(e) {
+        removeClass(document.querySelector(".articles-wrapper"), "static");
+        setTimeout(function() {
+          addClass(document.querySelector(".articles-wrapper"), "right");
+          setTimeout(function() {
+            addClass(document.querySelector(".articles-wrapper"), "static");
+          }, 1100);
+        }, 10);
+        window.scrollTo(0, 446);
+      });
+
+    window.addEventListener('scroll', function(e) {
+      var lastScrollY = window.scrollY;
+
+      if (lastScrollY >= 446) {
+        addClass(nextArticle, 'show');
+      } else {
+        removeClass(nextArticle, 'show');
+      }
+    })
+  }
+
 });

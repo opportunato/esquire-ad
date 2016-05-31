@@ -1,3 +1,14 @@
+.main-wrapper {
+  width: 100%;
+  padding: 0 $mobilePadding;
+
+  @media (min-width: $tablet) {
+    padding: 0;
+    width: calc(100% - 250px);
+    max-width: 1160px;
+  }
+}
+
 .top-nav {
   display: block;
 
@@ -9,7 +20,7 @@
   color: white;
   font-family: $secondaryFont;
 
-  @media (min-width: $mobile) {
+  @media (min-width: $tablet) {
     top: 25px;
   }
 
@@ -28,13 +39,21 @@
 
     @media (min-width: $mobile) {
       font-size: 30px;
-      width: auto;
+      width: 200px;
+    }
+
+    @media (min-width: $tablet) {
+      left: 0;
     }
   }
 
   .sponsor-tochka {
     right: $mobilePadding;
     top: 5px;
+
+    @media (min-width: $tablet) {
+      right: 0;
+    }
 
     > img {
       width: 97px;
@@ -60,7 +79,7 @@
   top: 0;
   z-index: 2;
 
-  @media (min-width: $mobile) {
+  @media (min-width: $tablet) {
     display: block;
   }
 

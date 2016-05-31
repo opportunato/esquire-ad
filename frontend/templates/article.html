@@ -3,26 +3,28 @@
 
 {% macro article(data, other, isLeft) %}
 <article class="article {{ 'left' if isLeft else 'right' }}">
-  <div class="header-wrapper" style="background-image:url(./images/companies/{{data.key}}/bg.jpg);">
-    <header>
-      <h1>{{ data.title }}</h1>
-      <h2>{{ data.description }}</h2>
-    </header>
+  <div class="top-wrapper">
+    <div class="header-wrapper" style="background-image:url(./images/companies/{{data.key}}/bg.jpg);">
+      <header>
+        <h1>{{ data.title }}</h1>
+        <h2>{{ data.description }}</h2>
+      </header>
+    </div>
+    <ul class="info">
+      <li>
+        <p>Город:</p>
+        <p>{{ data.city }}</p>
+      </li>
+      <li>
+        <p>Год основания:</p>
+        <p>{{ data.year }}</p>
+      </li>
+      <li>
+        <p>Количество сотрудников:</p>
+        <p>{{ data.employee_number }}</p>
+      </li>
+    </ul>
   </div>
-  <ul class="info main-wrapper">
-    <li>
-      <p>Город:</p>
-      <p>{{ data.city }}</p>
-    </li>
-    <li>
-      <p>Год основания:</p>
-      <p>{{ data.year }}</p>
-    </li>
-    <li>
-      <p>Количество сотрудников:</p>
-      <p>{{ data.employee_number }}</p>
-    </li>
-  </ul>
   <div class="article-content">
     {% for block in data.content %}
       {% if block.type %}
@@ -96,12 +98,12 @@
 {% endmacro %}
 
 {% block content %}
-  <div class="articles-wrapper">
+  <div class="articles-wrapper static">
     <nav>
       <div class="switcher">
-        <a class="current" href="./{{left.key}}.html" />{{ left.city }}</a>
+        <a class="{{ 'current' if current == left.key }}" href="./{{left.key}}.html" />{{ left.city }}</a>
         <div class="toggle"></div>
-        <a href="./{{right.key}}.html" />{{ right.city }}</a>
+        <a class="{{ 'current' if current == right.key }}" href="./{{right.key}}.html" />{{ right.city }}</a>
       </div>
     </nav>
 
