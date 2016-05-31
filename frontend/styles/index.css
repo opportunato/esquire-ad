@@ -146,21 +146,40 @@ $companiesHeightMobile: 177px;
 
 .companies {
   display: none;
-  margin-top: 15px;
+  padding-top: 15px;
   text-align: center;
+  max-width: 1170px;
+  margin: 0 auto;
 
-  @media (min-width: $mobile) {
+  @media (min-width: $smalltablet) {
     display: block;
   }
 
   @media (min-width: $tablet) {
-    margin-top: 25px;
+    padding-top: 25px;
   }
 
   font-family: $secondaryFont;
 
-  li {
+  > li {
+    position: relative;
     display: inline-block;
+    width: 31%;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    @media (min-width: $tablet) {
+      margin-right: 3%;
+      padding-right: 3%;
+      border-right: 1px solid #979797;
+    }
+
+    &:last-child {
+      border-right: none;
+      margin-right: 0;
+    }
   }
 }
 
@@ -172,7 +191,7 @@ $companiesHeightMobile: 177px;
 
   font-family: $secondaryFont;
 
-  @media (min-width: $mobile) {
+  @media (min-width: $smalltablet) {
     display: none;
   }
 
@@ -188,10 +207,6 @@ $companiesHeightMobile: 177px;
 
     cursor: pointer;
 
-    @media (min-width: $mobile) {
-      display: none;
-    }
-
     img {
       height: 100%;
     }
@@ -204,57 +219,49 @@ $companiesHeightMobile: 177px;
   .next {
     right: 16px;
   }
+}
 
-  > li {
-    position: relative;
-
-    float: left;
-    border-right: 1px solid #979797;
-    margin-right: 3%;
-    padding-right: 3%;
-    width: 31%;
-
-    &:first-child {
-      margin-left: 0;
+.companies,
+.companies-slider {
+  li:nth-child(2),
+  li:nth-child(3) {
+    .compared {
+      opacity: 0.7;
     }
 
-    &:last-child {
-      border-right: none;
-      margin-right: 0;
-    }
+    &:after {
+      content: 'Скоро';
 
-    &:nth-child(2),
-    &:nth-child(3) {
-      .compared {
-        opacity: 0.7;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+
+      @media (min-width: $smalltablet) {
+        left: 47%;
       }
 
-      :after {
-        content: 'Скоро';
-
-        position: absolute;
-        top: 50%; left: 45%;
-        transform: translate(-50%, -50%);
-
-        color: #EFAAC6;
-        font-size: 36px;
-        font-weight: 900;
-      }
+      color: #EFAAC6;
+      font-size: 36px;
+      font-weight: 900;
     }
+  }
 
-    &:nth-child(3):after {
-      color: #85B7CF;
-    }
+  li:nth-child(3):after {
+    color: #85B7CF;
   }
 }
 
 .compared {
-  width: 250px;
+  width: 300px;
   margin: 0 auto;
   text-align: center;
 
+  @media (min-width: $mobile) {
+    width: 250px;
+  }
+
   @media (min-width: $tablet) {
-    width: 300px;
+    width: auto;
   }
 
   h2 {
@@ -267,6 +274,12 @@ $companiesHeightMobile: 177px;
     @media (min-width: $tablet) {
       margin-bottom: 25px;
     }
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
   }
 }
 
@@ -283,19 +296,28 @@ $companiesHeightMobile: 177px;
   }
 
   @media (min-width: $tablet) {
-    width: 140px;
+    width: 48%;
+  }
+
+  &:first-child {
+    float: left;
+  }
+
+  &:last-child {
+    float: right;
   }
 
   > .avatar {
     position: relative;
 
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
     margin-bottom: 8px;
+    height: 73px;
     width: 73px;
 
     @media (min-width: $tablet) {
       margin-bottom: 11px;
+      height: 112px;
       width: 112px;
     }
 
@@ -315,7 +337,6 @@ $companiesHeightMobile: 177px;
 
   > h3, h4 {
     font-size: 14px;
-    text-align: center;
     white-space: nowrap;
   }
 

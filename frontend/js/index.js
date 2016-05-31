@@ -31,13 +31,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
   forEachSelector('.index-slider', function(el) {
     el.addEventListener('after.lory.slide', function(e) {
-      forEachSelector('.companies-slider li', function(el) {
+      forEachSelector('.companies-slider li .company, .companies li .company', function(el) {
         removeClass(el, 'active');
       });
       var slideIndex = e.detail.currentSlide;
-      var compareIndex = Math.ceil(slideIndex/2);
-      var companyIndex = slideIndex/2;
-      addClass(document.querySelector('.companies-slider li:nth-child(' + compareIndex + ') company:nth-child(' + companyIndex + ')'), 'active');
+      var compareIndex = Math.floor(slideIndex/2) + 1;
+      var companyIndex = slideIndex % 2;
+      console.log(companyIndex, compareIndex)
+      forEachSelector('.companies li:nth-child(' + compareIndex + ') .company', function(el, index) {
+        if (index === companyIndex) {
+          addClass(el, 'active');
+        }
+      });
+      forEachSelector('.companies-slider li:nth-child(' + compareIndex + ') .company', function(el, index) {
+        if (index === companyIndex) {
+          addClass(el, 'active');
+        }
+      });
     });
   });
 
