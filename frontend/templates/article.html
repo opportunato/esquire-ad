@@ -91,7 +91,7 @@
         {% if loop.index == 1 %}
           <p class="intro">{{ block }}</p>
         {% else %}
-          <p>{{ block }}</p>
+          <p>{{ block | safe }}</p>
         {% endif %}
       {% endif %}
     {% endfor %}

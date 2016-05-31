@@ -4,13 +4,20 @@
 {% set meta = meta.index %}
 
 {% macro company(data, active) %}
+{% if data.content %}
 <a href="{{data.key}}.html" class="company {{ 'active' if active }}">
-  <div class="avatar">
-    <img src="./images/companies/{{data.key}}/preview.png" />
+{% else %}
+<div class="company">
+{% endif %}
+  <div class="avatar" style="background-image:url(./images/companies/{{data.key}}/preview.png)">
   </div>
   <h3>{{ data.short_title }}</h3>
   <h4>{{ data.city }}</h4>
+{% if data.content %}
 </a>
+{% else %}
+</div>
+{% endif %}
 {% endmacro %}
 
 {% macro compared(title, data1, data2, active) %}
@@ -51,13 +58,13 @@
           </ul>
         </div>
 
-        <span class="js_prev prev">
+        <button class="js_prev prev">
           <img src="./images/slider-prev.png" />
-        </span>
+        </button>
 
-        <span class="js_next next">
+        <button class="js_next next">
           <img src="./images/slider-next.png" />
-        </span>
+        </button>
       </div>
     </div>
     <div class="companies-slider js_slider">
@@ -75,13 +82,13 @@
         </ul>
       </div>
 
-      <span class="js_prev prev">
+      <button class="js_prev prev">
         <img src="./images/arrow-prev-dark.png" />
-      </span>
+      </button>
 
-      <span class="js_next next">
+      <button class="js_next next">
         <img src="./images/arrow-next-dark.png" />
-      </span>
+      </button>
     </div>
     <ul class="companies">
       <li>

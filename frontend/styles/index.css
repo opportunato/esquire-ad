@@ -66,16 +66,16 @@ $companiesHeightMobile: 177px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    height: 29px;
+    padding: 40px;
 
     cursor: pointer;
 
-    @media (min-width: $mobile) {
-      height: 37px;
-    }
-
     img {
-      height: 100%;
+      height: 29px;
+
+      @media (min-width: $mobile) {
+        height: 37px;
+      }
     }
 
     &.hide {
@@ -84,6 +84,7 @@ $companiesHeightMobile: 177px;
   }
 
   .prev {
+    padding-left: 0;
     left: 20px;
 
     @media (min-width: $tablet) {
@@ -96,6 +97,7 @@ $companiesHeightMobile: 177px;
   }
 
   .next {
+    padding-right: 0;
     right: 20px;
 
     @media (min-width: $tablet) {
@@ -215,12 +217,12 @@ $companiesHeightMobile: 177px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    height: 29px;
+    padding: 20px;
 
     cursor: pointer;
 
     img {
-      height: 100%;
+      height: 29px;
     }
 
     &.hide {
@@ -229,10 +231,12 @@ $companiesHeightMobile: 177px;
   }
 
   .prev {
+    padding-left: 0;
     left: 16px;
   }
 
   .next {
+    padding-right: 0;
     right: 16px;
   }
 }
@@ -330,15 +334,15 @@ $companiesHeightMobile: 177px;
     margin-bottom: 8px;
     height: 73px;
     width: 73px;
+    background-size: 73px auto;
+    background-repeat: none;
 
     @media (min-width: $tablet) {
       margin-bottom: 11px;
       height: 112px;
       width: 112px;
-    }
 
-    > img {
-      width: 100%;
+      background-size: 112px auto;
     }
   }
 
@@ -348,6 +352,8 @@ $companiesHeightMobile: 177px;
     > .avatar {
       border: 2px solid $activeColor;
       border-radius: 100%;
+
+      background-position: -2px -2px;
     }
   }
 

@@ -39,8 +39,14 @@ button {
   background-color: transparent;
   border: none;
   -webkit-appearance: none;
+  outline: none;
+  padding: 0;
 }
 
 p {
   margin: 0;
+}
+
+b {
+  font-weight: 700;
 }
