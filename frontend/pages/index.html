@@ -35,24 +35,17 @@
       <div class="index-slider js_slider">
         <div class="frame js_frame">
           <ul class="slides js_slides">
-            <li>
-              <div class="index-slide">
-                <div class="index-wrapper">
-                  <h1>Кроссфит-клуб ARMA S.M.C</h1>
-                  <h2>Cпециализированный клуб кроссфита, функционального тренинга, единоборств, тяжелой атлетики</h2>
-                  <a class="button colored" href="arma.html">Читать</a>
+            {% for data in [arma, crossfit] %}
+              <li>
+                <div class="index-slide"  style="background-image:url(./images/companies/{{data.key}}/index.jpg);">
+                  <div class="index-wrapper">
+                    <h1>{{ data.title }}</h1>
+                    <h2>{{ data.description }}</h2>
+                    <a class="button colored" href="{{ data.key }}.html">Читать</a>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="index-slide">
-                <div class="index-wrapper">
-                  <h1>Кроссфит-клуб ARMA S.M.C</h1>
-                  <h2>Cпециализированный клуб кроссфита, функционального тренинга, единоборств, тяжелой атлетики</h2>
-                  <a class="button colored" href="arma.html">Читать</a>
-                </div>
-              </div>
-            </li>
+              </li>
+            {% endfor %}
           </ul>
         </div>
 

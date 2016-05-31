@@ -81,28 +81,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var nextArticle = document.querySelector('.next-article');
 
+  function animateArticle(type) {
+    removeClass(document.querySelector(".articles-wrapper"), "static");
+    setTimeout(function() {
+      var method = (type == 'right') ? addClass : removeClass;
+      method(document.querySelector(".articles-wrapper"), "right");
+      setTimeout(function() {
+        addClass(document.querySelector(".articles-wrapper"), "static");
+      }, 1100);
+    }, 10);
+    window.scrollTo(0, 446);
+  }
+
   if (nextArticle) {
     nextArticle.querySelector('.next-button:first-child')
-      .addEventListener('click', function(e) {
-        removeClass(document.querySelector(".articles-wrapper"), "static");
-        setTimeout(function() {
-          removeClass(document.querySelector(".articles-wrapper"), "right");
-          setTimeout(function() {
-            addClass(document.querySelector(".articles-wrapper"), "static");
-          }, 1100);
-        }, 10);
-        window.scrollTo(0, 446);
-      });
+      .addEventListener('click', function() { animateArticle('left') });
     nextArticle.querySelector('.next-button:last-child')
-      .addEventListener('click', function(e) {
-        removeClass(document.querySelector(".articles-wrapper"), "static");
-        setTimeout(function() {
-          addClass(document.querySelector(".articles-wrapper"), "right");
-          setTimeout(function() {
-            addClass(document.querySelector(".articles-wrapper"), "static");
-          }, 1100);
-        }, 10);
-        window.scrollTo(0, 446);
+      .addEventListener('click', function() { animateArticle('right') });
+    nextArticle.querySelector('.center-button')
+      .addEventListener('click', function() {
+        if (hasClass(document.querySelector(".articles-wrapper"), "right")) {
+          animateArticle('left');
+        } else {
+          animateArticle('right');
+        }
       });
 
     window.addEventListener('scroll', function(e) {

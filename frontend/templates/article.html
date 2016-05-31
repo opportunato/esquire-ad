@@ -74,17 +74,11 @@
         {% endif %}
       {% endif %}
     {% endfor %}
-    {% if data.writer == 1 %}
-      <div class="authors">
-        <p>Интервью: {{ data.writer }}</p>
-        <p>Фото: {{ data.photographer }}</p>
-      </div>
-    {% endif %}
   </div>
   <footer>
     <h3>Сравнить с</h3>
     <h1>{{ other.short_title }}</h1>
-    <h2>{{ other.city_description }}</h2>
+    <h2>{{ other.description }}</h2>
     <a href="{{other.key}}.html" class="button">Читать</a>
   </footer>
   <div class="ad">
@@ -129,6 +123,7 @@
 
     <div class="next-article">
       <button class="next-button">{{ left.city }}</button>
+      <button class="center-button"></button>
       <button class="next-button">{{ right.city }}</button>
     </div>
   </div>
