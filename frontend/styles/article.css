@@ -278,7 +278,9 @@ $wideContentWidth: 1170px;
   font-size: 17px;
 
   @media (min-width: $smalltablet) {
+    padding: 0;
     padding-top: 35px;
+    padding-bottom: 16px;
   }
 
   > h3 {
@@ -305,7 +307,7 @@ $wideContentWidth: 1170px;
   }
 
   > figure,
-  .article-slider {
+  > .article-slider {
     margin-bottom: 30px;
   }
 
@@ -313,6 +315,10 @@ $wideContentWidth: 1170px;
   > .article-slider {
     position: relative;
     width: 100%;
+
+    @media (min-width: $smalltablet) {
+      margin-bottom: 30px;
+    }
 
     @media (min-width: $smalltablet) {
       width: $contentWidth;
@@ -325,12 +331,6 @@ $wideContentWidth: 1170px;
   }
 
   > .group {
-    margin-bottom: 14px;
-
-    @media (min-width: $smalltablet) {
-      margin-bottom: 0;
-    }
-
     p {
       margin-bottom: calc($mobilePadding - 2px);
 
@@ -338,10 +338,18 @@ $wideContentWidth: 1170px;
         margin-right: 0;
       }
 
+      &:last-child {
+        margin-bottom: 0;
+      }
+
       @media (min-width: $smalltablet) {
         float: left;
         margin: 0 24px 24px 0;
         width: calc(($contentWidth - 24px) / 2);
+
+        &:nth-last-child(2) {
+          margin-bottom: 0;
+        }
 
         @media (min-width: $extrawidescreen) {
           width: calc(($wideContentWidth - 24px) / 2);
@@ -374,7 +382,22 @@ $wideContentWidth: 1170px;
 
 .article-slider {
   li {
-    width: $contentWidth;
+    display: block;
+    width: calc(100% - 2 * $mobilePadding);
+    margin-bottom: $mobilePadding;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: $mobile) {
+      margin-bottom: 0;
+      display: inline-block;
+    }
+
+    @media (min-width: $widescreen) {
+      width: $contentWidth;
+    }
 
     @media (min-width: $extrawidescreen) {
       width: $wideContentWidth;
@@ -382,6 +405,7 @@ $wideContentWidth: 1170px;
   }
 
   .js_prev, .js_next {
+    display: none;
     position: absolute;
     top: 50%; transform: translateY(-50%);
 
@@ -390,6 +414,14 @@ $wideContentWidth: 1170px;
     border: 1px solid #979797;
     border-radius: 100%;
     cursor: pointer;
+
+    @media (min-width: $mobile) {
+      display: block;
+    }
+
+    &.hide {
+      display: none;
+    }
 
     img {
       position: absolute;

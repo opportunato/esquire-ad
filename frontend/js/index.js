@@ -26,18 +26,38 @@ function forEachSelector(selector, callback) {
 
 document.addEventListener('DOMContentLoaded', function() {
   forEachSelector('.js_slider', function(el) {
-    lory(el, {});
+    var nextButton = el.querySelector('.next');
+    var prevButton = el.querySelector('.prev');
+    var slidesNumber = el.querySelectorAll('li').length;
+
+    function callback(e) {
+      var slideIndex = (e.detail || { currentSlide: 0 }).currentSlide || 0;
+
+      if (slideIndex === 0) {
+        removeClass(nextButton, 'hide');
+        addClass(prevButton, 'hide');
+      } else if (slideIndex === slidesNumber - 1) {
+        addClass(nextButton, 'hide');
+        removeClass(prevButton, 'hide');
+      } else {
+        removeClass(nextButton, 'hide');
+        removeClass(prevButton, 'hide');
+      }
+    }
+
+    el.addEventListener('after.lory.slide', callback);
+    el.addEventListener('after.lory.init', callback);
+    el.addEventListener('on.lory.resize', callback);
   });
 
   forEachSelector('.index-slider', function(el) {
-    el.addEventListener('after.lory.slide', function(e) {
+    function callback(e) {
       forEachSelector('.companies-slider li .company, .companies li .company', function(el) {
         removeClass(el, 'active');
       });
-      var slideIndex = e.detail.currentSlide;
+      var slideIndex = (e.detail || { currentSlide: 0 }).currentSlide || 0;
       var compareIndex = Math.floor(slideIndex/2) + 1;
       var companyIndex = slideIndex % 2;
-      console.log(companyIndex, compareIndex)
       forEachSelector('.companies li:nth-child(' + compareIndex + ') .company', function(el, index) {
         if (index === companyIndex) {
           addClass(el, 'active');
@@ -48,7 +68,15 @@ document.addEventListener('DOMContentLoaded', function() {
           addClass(el, 'active');
         }
       });
-    });
+    }
+
+    el.addEventListener('after.lory.slide', callback);
+    el.addEventListener('after.lory.init', callback);
+    el.addEventListener('on.lory.resize', callback);
+  });
+
+  forEachSelector('.js_slider', function(el) {
+    lory(el);
   });
 
   var nextArticle = document.querySelector('.next-article');
@@ -80,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function(e) {
       var lastScrollY = window.scrollY;
 
-      if (lastScrollY >= 446) {
+      if (lastScrollY >= 446 && document.body.scrollHeight - lastScrollY - document.body.clientHeight > 300) {
         addClass(nextArticle, 'show');
       } else {
         removeClass(nextArticle, 'show');

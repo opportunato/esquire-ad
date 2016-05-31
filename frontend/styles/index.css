@@ -77,6 +77,10 @@ $companiesHeightMobile: 177px;
     img {
       height: 100%;
     }
+
+    &.hide {
+      display: none;
+    }
   }
 
   .prev {
@@ -94,11 +98,11 @@ $companiesHeightMobile: 177px;
   .next {
     right: 20px;
 
-    @media (min-width: $wrapperWidth) {
+    @media (min-width: $tablet) {
       right: calc(250px/2);
     }
 
-    @media (min-width: 1410px) {
+    @media (min-width: $wrapperWidth) {
       right: calc(50% - 1160px/2);
     }
   }
@@ -217,6 +221,10 @@ $companiesHeightMobile: 177px;
 
     img {
       height: 100%;
+    }
+
+    &.hide {
+      display: none;
     }
   }
 

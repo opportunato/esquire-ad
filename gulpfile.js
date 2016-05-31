@@ -23,7 +23,7 @@ const variables = {
   primaryColor: '#231F20',
   activeColor: '#FF7979',
   mobile: '450px',
-  smalltablet: '765px',
+  smalltablet: '790px',
   tablet: '915px',
   widescreen: '1350px',
   wrapperWidth: '1410px',
