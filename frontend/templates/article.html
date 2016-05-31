@@ -74,16 +74,18 @@
         {% endif %}
       {% endif %}
     {% endfor %}
-    <div class="authors">
-      <p>Интервью: {{ data.writer }}</p>
-      <p>Фото: {{ data.photographer }}</p>
-    </div>
+    {% if data.writer == 1 %}
+      <div class="authors">
+        <p>Интервью: {{ data.writer }}</p>
+        <p>Фото: {{ data.photographer }}</p>
+      </div>
+    {% endif %}
   </div>
   <footer>
     <h3>Сравнить с</h3>
     <h1>{{ other.short_title }}</h1>
     <h2>{{ other.city_description }}</h2>
-    <a href="{{crossdata.key}}.html" class="button">Читать</a>
+    <a href="{{other.key}}.html" class="button">Читать</a>
   </footer>
   <div class="ad">
     <a href="https://tochka.com/" target="_blank" class="sponsor">
@@ -101,9 +103,9 @@
   <div class="articles-wrapper static {{ 'right' if right.key == current }}">
     <nav>
       <div class="switcher">
-        <a class="{{ 'current' if current == left.key }}" href="./{{left.key}}.html" />{{ left.city }}</a>
+        <a href="./{{left.key}}.html" />{{ left.city }}</a>
         <div class="toggle"></div>
-        <a class="{{ 'current' if current == right.key }}" href="./{{right.key}}.html" />{{ right.city }}</a>
+        <a href="./{{right.key}}.html" />{{ right.city }}</a>
       </div>
     </nav>
 
