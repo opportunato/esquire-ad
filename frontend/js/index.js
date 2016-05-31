@@ -24,6 +24,12 @@ function forEachSelector(selector, callback) {
   Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(callback);
 }
 
+function initSliders() {
+  forEachSelector('.js_slider', function(el) {
+    lory(el);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   forEachSelector('.js_slider', function(el) {
     var nextButton = el.querySelector('.next');
@@ -75,9 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     el.addEventListener('on.lory.resize', callback);
   });
 
-  forEachSelector('.js_slider', function(el) {
-    lory(el);
-  });
+  initSliders();
 
   var nextArticle = document.querySelector('.next-article');
 
@@ -88,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
       method(document.querySelector(".articles-wrapper"), "right");
       setTimeout(function() {
         addClass(document.querySelector(".articles-wrapper"), "static");
+        initSliders();
       }, 1100);
     }, 10);
     window.scrollTo(0, 446);
