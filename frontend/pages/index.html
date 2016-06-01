@@ -9,9 +9,14 @@
 {% else %}
 <div class="company">
 {% endif %}
-  <div class="avatar" style="background-image:url(./images/companies/{{data.key}}/preview.png)">
-  </div>
-  <h3>{{ data.short_title }}</h3>
+  {% if data.short_title %}
+    <div class="avatar" style="background-image:url(./images/companies/{{data.key}}/preview.png)">
+    </div>
+    <h3>{{ data.short_title }}</h3>
+  {% else %}
+    <div class="avatar" style="background-image:url(./images/companies/noname.png)">
+    </div>
+  {% endif %}
   <h4>{{ data.city }}</h4>
 {% if data.content %}
 </a>
@@ -32,7 +37,8 @@
   <div class="main">
     <div class="index">
       <div class="title">
-        <a href="/">Бизнес-близнецы</a>
+        <div>Бизнес-близнецы</div>
+        <h2 class="subtitle">Дело не в деньгах</h2>
       </div>
       <a href="https://tochka.com/" target="_blank" class="sponsor-tochka">
         <img src="./images/sponsor-tochka.png" />
@@ -71,13 +77,13 @@
       <div class="frame js_frame">
         <ul class="slides js_slides">
           <li>
-            {{ compared("Кроссфит-клуб", arma, crossfit, true) }}
+            {{ compared("Кроссфит-клубы", arma, crossfit, true) }}
           </li>
           <li>
-            {{ compared("Агенство кибербезопасности", group_ib, mandalay) }}
+            {{ compared("Кондитерские", banoffi, bravo) }}
           </li>
           <li>
-            {{ compared("Пекарня", bakery_brothers, zeit_fur_brot) }}
+            {{ compared("Фотостудии", ekaterinburg, london) }}
           </li>
         </ul>
       </div>
@@ -92,13 +98,13 @@
     </div>
     <ul class="companies">
       <li>
-        {{ compared("Кроссфит-клуб", arma, crossfit, true) }}
+        {{ compared("Кроссфит-клубы", arma, crossfit, true) }}
       </li>
       <li>
-        {{ compared("Агенство кибербезопасности", group_ib, mandalay) }}
+        {{ compared("Кондитерские", banoffi, bravo) }}
       </li>
       <li>
-        {{ compared("Пекарня", bakery_brothers, zeit_fur_brot) }}
+        {{ compared("Фотостудии", ekaterinburg, london) }}
       </li>
     </ul>
   </div>

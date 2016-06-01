@@ -243,6 +243,11 @@ $companiesHeightMobile: 177px;
 
 .companies,
 .companies-slider {
+  li {
+    vertical-align: top;
+    height: 100%;
+  }
+
   li:nth-child(2),
   li:nth-child(3) {
     .compared {
@@ -253,10 +258,12 @@ $companiesHeightMobile: 177px;
       content: 'Скоро';
 
       position: absolute;
-      top: 50%; left: 50%;
+      top: calc(32px + 73px/2);
+      left: 50%;
       transform: translate(-50%, -50%);
 
-      @media (min-width: $smalltablet) {
+      @media (min-width: $tablet) {
+        top: calc(42px + 112px/2);
         left: 47%;
       }
 
