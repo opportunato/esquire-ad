@@ -65,13 +65,13 @@
               </ul>
             </div>
 
-            <span class="js_prev prev">
-              <img src="./images/arrow-prev.png" />
-            </span>
+            <button class="js_prev prev">
+              <img src="./images/article-slider-prev.png" />
+            </button>
 
-            <span class="js_next next">
-              <img src="./images/arrow-next.png" />
-            </span>
+            <button class="js_next next">
+              <img src="./images/article-slider-next.png" />
+            </button>
           </div>
         {% elif block.type == "images" %}
           <figure class="group">
@@ -118,9 +118,12 @@
   <div class="articles-wrapper static {{ 'right' if right.key == current }}">
     <nav>
       <div class="switcher">
-        <a href="./{{left.key}}.html" />{{ left.city }}</a>
-        <div class="toggle"></div>
-        <a href="./{{right.key}}.html" />{{ right.city }}</a>
+        <div class="switcher-wrapper">
+          <a href="./{{left.key}}.html" />{{ left.city }}</a>
+          <div class="toggle"></div>
+          <a href="./{{right.key}}.html" />{{ right.city }}</a>
+        </div>
+        <a class="switcher-caption" href="./{{left.key}}.html">Переключить</a>
       </div>
     </nav>
 

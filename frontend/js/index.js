@@ -26,8 +26,35 @@ function forEachSelector(selector, callback) {
 
 function initSliders() {
   forEachSelector('.js_slider', function(el) {
-    lory(el);
+    var slider = lory(el);
+    if (hasClass(el, 'index-slider')) {
+      startSlideshow(el, slider);
+    }
   });
+}
+
+function startSlideshow(el, slider) {
+  var timeout = null;
+
+  forEachSelector('.prev, .next', function(el) {
+    el.addEventListener('click', function(e) {
+      clearTimeout(timeout);
+    })
+  });
+
+  function slide() {
+    return setTimeout(function() {
+      if (slider.returnIndex() < 1) {
+        slider.next();
+      } else {
+        slider.prev();
+      }
+
+      timeout = slide();
+    }, 3000);
+  }
+
+  timeout = slide();
 }
 
 document.addEventListener('DOMContentLoaded', function() {

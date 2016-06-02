@@ -21,7 +21,7 @@
 
   @media (min-width: $mobile) {
     top: 24px;
-    font-size: 30px;
+    font-size: 27px;
   }
 
   @media (min-width: $tablet) {
@@ -34,7 +34,7 @@
 
   a, div:first-child {
     display: block;
-    width: 100px;
+    width: auto;
 
     color: inherit;
     font-weight: 900;
@@ -44,6 +44,10 @@
 
     @media (min-width: $tablet) {
       width: 200px;
+    }
+
+    @media (min-width: $widescreen) {
+      width: auto;
     }
   }
 
@@ -112,7 +116,6 @@
   display: block;
   position: relative;
   margin: 0 auto;
-  padding-left: 7px;
   height: 36px;
   width: 175px;
 
@@ -137,7 +140,7 @@
     position: absolute;
     width: 175px;
     height: 15px;
-    left: 53%; transform: translateX(-50%);
+    left: 50%; transform: translateX(-50%);
     border: 2px solid white;
 
     @media (min-width: $mobile) {
@@ -160,9 +163,18 @@
     background: url("../images/button.png") no-repeat;
     background-size: cover;
 
+    padding-left: 15px;
     height: 55px;
     line-height: 55px;
     width: 218px;
+
+    position: relative;
+    left: -10px;
+
+    &:after,
+    &:before {
+      left: 53%;
+    }
 
     @media (min-width: $mobile) {
       height: 71px;

@@ -103,17 +103,32 @@ $wideContentWidth: 1170px;
   position: absolute;
   left: 50%; top: 50%;
 
+  @media (min-width: $tablet) {
+    top: 55%;
+  }
+
   color: white;
   font-family: $secondaryFont;
   font-size: 14px;
   font-weight: 800;
   white-space: nowrap;
+  text-align: center;
 
-  a {
+  .switcher-wrapper > a {
     display: inline-block;
     color: inherit;
     text-decoration: none;
     vertical-align: middle;
+
+    width: 80px;
+
+    &:first-child {
+      text-align: right;
+    }
+
+    &:last-child {
+      text-align: left;
+    }
   }
 
   .toggle {
@@ -139,49 +154,54 @@ $wideContentWidth: 1170px;
       border-radius: 100%;
     }
   }
+
+  .toggle-wrapper a {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+  }
+
+  .switcher-caption {
+    display: none;
+
+    @media (min-width: $tablet) {
+      display: inline-block;
+    }
+
+    margin-top: 5px;
+    color: #9B9B9B;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+  }
 }
 
 $buttonSize: 60px;
 
 .articles-wrapper:not(.right) {
-  .switcher {
-    margin-left: calc($buttonSize/2);
-  }
+  .switcher-wrapper {
+    > a:first-child {
+      color: $activeColor;
+    }
 
-  .switcher a:last-child {
-    transform: translateX(-$buttonSize);
-    padding-left: $buttonSize;
-  }
-
-  .switcher a:first-child {
-    color: $activeColor;
-  }
-
-  .switcher .toggle:after {
-    left: 5px;
-    right: auto;
+    .toggle:after {
+      left: 5px;
+      right: auto;
+    }
   }
 }
 
 .articles-wrapper.right {
-  .switcher {
-    margin-left: calc(-$buttonSize/2);
-  }
+  .switcher-wrapper {
+    > a:last-child {
+      color: $activeColor;
+    }
 
-  .switcher a:first-child {
-    position: relative;
-    transform: translateX($buttonSize);
-    padding-right: $buttonSize;
-    z-index: 1;
-  }
-
-  .switcher a:last-child {
-    color: $activeColor;
-  }
-
-  .switcher .toggle:after {
-    right: 5px;
-    left: auto;
+    .toggle:after {
+      right: 5px;
+      left: auto;
+    }
   }
 }
 
@@ -452,8 +472,6 @@ $buttonSize: 60px;
 
     height: 48px;
     width: 48px;
-    border: 1px solid #979797;
-    border-radius: 100%;
     cursor: pointer;
 
     @media (min-width: $mobile) {
@@ -465,11 +483,7 @@ $buttonSize: 60px;
     }
 
     img {
-      position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-
-      height: 25px;
+      height: 100%;
     }
   }
 
