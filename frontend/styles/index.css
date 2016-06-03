@@ -6,6 +6,7 @@ $companiesHeightMobile: 177px;
 }
 
 .index {
+  background: $primaryColor;
   position: relative;
   height: calc(100% - $companiesHeightMobile);
   min-height: 390px;
@@ -114,16 +115,6 @@ $companiesHeightMobile: 177px;
   height: 100%;
   background: url("../images/bg.jpg") center;
   background-size: cover;
-
-  &:after {
-    position: absolute;
-
-    content: '';
-    top: 0;
-    left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
 }
 
 .index-wrapper {
@@ -185,19 +176,24 @@ $companiesHeightMobile: 177px;
   }
 
   font-family: $secondaryFont;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
   > li {
     position: relative;
-    display: inline-block;
-    width: 31%;
+    float: left;
+    width: 33.3%;
 
     &:first-child {
       margin-left: 0;
     }
 
     @media (min-width: $tablet) {
-      margin-right: 3%;
-      padding-right: 3%;
+      padding-left: 2%;
+      padding-right: 2%;
       border-right: 1px solid #979797;
     }
 
@@ -275,7 +271,6 @@ $companiesHeightMobile: 177px;
 
       @media (min-width: $tablet) {
         top: calc(42px + 112px/2);
-        left: 45%;
       }
 
       color: #EFAAC6;
@@ -334,7 +329,7 @@ $companiesHeightMobile: 177px;
   }
 
   @media (min-width: $tablet) {
-    width: 48%;
+    width: 50%;
   }
 
   &:first-child {
@@ -391,5 +386,26 @@ $companiesHeightMobile: 177px;
 
   > h4 {
     font-weight: 500;
+  }
+}
+
+.ad-label {
+  position: absolute;
+  right: 8px;
+  top: 75px;
+  transform: rotate(90deg);
+  font-size: 7px;
+  z-index: 2;
+
+  @media (min-width: $mobile) {
+    top: 100px;
+    right: 1px;
+    font-size: 11px;
+  }
+
+  @media (min-width: $tablet) {
+    margin-top: -3px;
+    top: 50%; transform: translateY(-50%) rotate(90deg);
+    right: 47px;
   }
 }

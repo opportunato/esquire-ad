@@ -1,6 +1,8 @@
 {
   "arma": {
     "key": "arma",
+    "prod_url": "/tochka/moscow/",
+    "url": "./moscow.html",
     "title": "Кроссфит-клуб ARMA S.M.C",
     "short_title": "ARMA S.M.C",
     "description": "Cпециализированный клуб кроссфита, функционального тренинга, единоборств, тяжелой атлетики",

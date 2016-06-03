@@ -159,43 +159,24 @@
     border-bottom: none;
   }
 
-  &.colored {
+  > .color {
     background: url("../images/button.png") no-repeat;
     background-size: cover;
 
-    padding-left: 15px;
     height: 55px;
-    line-height: 55px;
     width: 218px;
+    z-index: -1;
 
-    position: relative;
-    left: -10px;
-
-    &:after,
-    &:before {
-      left: 53%;
-    }
+    position: absolute;
+    left: -28px;
+    top: -8px;
 
     @media (min-width: $mobile) {
+      left: -35px;
+      top: -10px;
+
       height: 71px;
-      line-height: 71px;
       width: 284px;
-    }
-
-    &:after {
-      bottom: 8px;
-
-      @media (min-width: $mobile) {
-        bottom: 10px;
-      }
-    }
-
-    &:before {
-      top: 8px;
-
-      @media (min-width: $mobile) {
-        top: 10px;
-      }
     }
   }
 }

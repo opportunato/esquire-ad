@@ -5,16 +5,16 @@
 
 {% macro company(data, active) %}
 {% if data.content %}
-<a href="{{data.key}}.html" class="company {{ 'active' if active }}">
+<a href="{{ data.prod_url if production else data.url }}" class="company {{ 'active' if active }}">
 {% else %}
 <div class="company">
 {% endif %}
   {% if data.short_title %}
-    <div class="avatar" style="background-image:url(./images/companies/{{data.key}}/preview.png)">
+    <div class="avatar" style="background-image:url({{ assets_prefix }}/images/companies/{{data.key}}/preview.png)">
     </div>
     <h3>{{ data.short_title }}</h3>
   {% else %}
-    <div class="avatar" style="background-image:url(./images/companies/noname.png)">
+    <div class="avatar" style="background-image:url({{ assets_prefix }}/images/companies/noname.png)">
     </div>
   {% endif %}
   <h4>{{ data.city }}</h4>
@@ -40,23 +40,27 @@
         <div>Бизнес-близнецы</div>
         <h2 class="subtitle">Дело не в деньгах</h2>
       </div>
-      <a href="https://tochka.com/" target="_blank" class="sponsor-tochka">
-        <img src="./images/sponsor-tochka.png" />
+      <a href="https://www.tochka.com/betterworld?utm_source=brend&utm_medium=esquire&utm_campaign=imagine" target="_blank" class="sponsor-tochka">
+        <img src="{{ assets_prefix }}/images/sponsor-tochka.png" />
       </a>
       <h2>Чем отличаются похожие компании из разных частей света</h2>
       <a href="https://www.openbank.ru/" target="_blank" class="sponsor-otkritie">
-        <img src="./images/sponsor-otkritie.png" />
+        <img src="{{ assets_prefix }}/images/sponsor-otkritie.png" />
       </a>
+      <div class="ad-label">Реклама</div>
       <div class="index-slider js_slider">
         <div class="frame js_frame">
           <ul class="slides js_slides">
             {% for data in [arma, crossfit] %}
               <li>
-                <div class="index-slide"  style="background-image:url(./images/companies/{{data.key}}/index.jpg);">
+                <div class="index-slide"  style="background-image:url({{ assets_prefix }}/images/companies/{{data.key}}/index.jpg);">
                   <div class="index-wrapper">
                     <h1>{{ data.title }}</h1>
                     <h2>{{ data.description }}</h2>
-                    <a class="button colored" href="{{ data.key }}.html">Читать</a>
+                    <a class="button" href="{{ data.prod_url if production else data.url }}">
+                      <div class="color"></div>
+                      Читать
+                    </a>
                   </div>
                 </div>
               </li>
@@ -65,11 +69,11 @@
         </div>
 
         <button class="js_prev prev">
-          <img src="./images/slider-prev.png" />
+          <img src="{{ assets_prefix }}/images/slider-prev.png" />
         </button>
 
         <button class="js_next next">
-          <img src="./images/slider-next.png" />
+          <img src="{{ assets_prefix }}/images/slider-next.png" />
         </button>
       </div>
     </div>
@@ -89,11 +93,11 @@
       </div>
 
       <button class="js_prev prev">
-        <img src="./images/arrow-prev-dark.png" />
+        <img src="{{ assets_prefix }}/images/arrow-prev-dark.png" />
       </button>
 
       <button class="js_next next">
-        <img src="./images/arrow-next-dark.png" />
+        <img src="{{ assets_prefix }}/images/arrow-next-dark.png" />
       </button>
     </div>
     <ul class="companies">
@@ -108,5 +112,4 @@
       </li>
     </ul>
   </div>
-  <script src="./js/app.js"></script>
 {% endblock %}

@@ -273,6 +273,7 @@ $buttonSize: 60px;
   border-bottom: 1px solid #979797;
   margin: 14px $mobilePadding 0;
   padding: 15px 0;
+  text-align: center;
 
   font-family: $secondaryFont;
 
@@ -689,6 +690,7 @@ $buttonSize: 130px;
     height: calc(100% - $navHeight);
     top: $navHeight;
     left: calc(50% + $contentWidth/2 + 100px + $nextArticleSize/2 - 1px);
+    z-index: -1;
 
     background: $primaryColor;
     transition: left 1s ease-in-out;

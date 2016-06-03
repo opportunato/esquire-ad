@@ -1,5 +1,7 @@
 <!-- layout.nunjucks -->
 
+{% set assets_prefix = "/static/promo/tochka" if production else "./static" %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,26 +14,27 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ meta.url }}">
     <meta property="og:description" content="{{ meta.description }}">
-    <meta property="og:image" content="{{ meta.url }}/images/fb.png">
+    <meta property="og:image" content="https://esquire.ru/static/promo/tochka/images/fb.png">
     <meta property="og:site_name" content="Журнал Esquire">
 
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="{{ meta.url }}">
     <meta property="twitter:title" content="{{ meta.title }}">
     <meta property="twitter:description" content="{{ meta.description }}">
-    <meta property="twitter:image" content="{{ meta.url }}/images/fb.png">
+    <meta property="twitter:image" content="https://esquire.ru/static/promo/tochka/images/fb.png">
   {% endif %}
 
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="{{ assets_prefix }}/css/{{ hash["main.css"] if production else "main.css" }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
-  <script src="./js/picturefill.min.js" async></script>
+  <script src="{{ assets_prefix }}/js/picturefill.min.js" async></script>
 </head>
 <body>
 
   <!-- You write code for this content block in another file -->
   {% block content %} {% endblock %}
 
+  <script src="{{ assets_prefix }}/js/{{ hashJs["app.js"] if production else "app.js" }}"></script>
   {% if production %}
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

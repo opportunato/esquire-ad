@@ -15,6 +15,7 @@ const buffer = require('vinyl-buffer');
 const browserify = require('browserify');
 
 const postcss = require('gulp-postcss');
+const rev = require('gulp-rev');
 
 const browserSync = require('browser-sync').create();
 
@@ -46,7 +47,10 @@ gulp.task('styles', function() {
 		}))
     .pipe(concatCss('main.css'))
     .pipe(gulpIf(isDevelopment, sourcemaps.write()))
-    .pipe(gulp.dest('public/css'));
+    .pipe(gulpIf(!isDevelopment, rev()))
+    .pipe(gulp.dest('public/static/css'))
+    .pipe(gulpIf(!isDevelopment, rev.manifest()))
+    .pipe(gulp.dest('public/static/css'));
 });
 
 gulp.task('scripts', function () {
@@ -59,11 +63,14 @@ gulp.task('scripts', function () {
   return b.bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
-        .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./public/js/'));
+    .pipe(gulpIf(isDevelopment, sourcemaps.init({loadMaps: true})))
+    // Add transformation tasks to the pipeline here.
+    .pipe(uglify())
+    .pipe(gulpIf(isDevelopment, sourcemaps.write()))
+    .pipe(gulpIf(!isDevelopment, rev()))
+    .pipe(gulp.dest('./public/static/js/'))
+    .pipe(gulpIf(!isDevelopment, rev.manifest()))
+    .pipe(gulp.dest('./public/static/js/'));
 });
 
 gulp.task('clean', function() {
@@ -72,12 +79,12 @@ gulp.task('clean', function() {
 
 gulp.task('assets', function() {
   return gulp.src('frontend/assets/**')
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('public/static'));
 });
 
 gulp.task('picturefill', function() {
   return gulp.src('frontend/js/picturefill.min.js')
-    .pipe(gulp.dest('./public/js/'));
+    .pipe(gulp.dest('./public/static/js/'));
 })
 
 gulp.task('nunjucks', function() {
@@ -90,13 +97,15 @@ gulp.task('nunjucks', function() {
     .pipe(data(function() { return require('./frontend/data/london.json') }))
     .pipe(data(function() { return require('./frontend/data/meta.json') }))
     .pipe(data(function() { return { "production": !isDevelopment } }))
+    .pipe(gulpIf(!isDevelopment, data(function() { return { "hash": require('./public/static/css/rev-manifest.json') } })))
+    .pipe(gulpIf(!isDevelopment, data(function() { return { "hashJs": require('./public/static/js/rev-manifest.json') } })))
     .pipe(nunjucksRender({
         path: ['frontend/templates']
       }))
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'assets', 'nunjucks', 'scripts', 'picturefill')));
+gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'assets', 'scripts', 'picturefill'), 'nunjucks'));
 
 gulp.task('watch', function() {
   gulp.watch('frontend/styles/**/*.*', gulp.series('styles'));

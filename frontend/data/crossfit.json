@@ -1,6 +1,8 @@
 {
   "crossfit": {
     "key": "crossfit",
+    "prod_url": "/tochka/new-york/",
+    "url": "./new-york.html",
     "title": "Клуб СrossFit NYC",
     "short_title": "CrossFit NYC",
     "description": "Нью-йоркский клуб кроссфита, самый большой зал для кроссфита в мире",
