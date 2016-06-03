@@ -2,6 +2,10 @@
 
 {% set assets_prefix = "/static/promo/tochka" if production else "./static" %}
 
+{% macro url(data) %}
+  {{ data.prod_url if production else data.url }}
+{% endmacro %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -100,7 +100,9 @@
     <h3>Сравнить с</h3>
     <h1>{{ other.short_title }}</h1>
     <h2>{{ other.description }}</h2>
-    <a href="{{ other.prod_url if production else other.url }}" class="button">Читать</a>
+    <a href="{{ url(other) }}" class="button">
+      Читать
+    </a>
   </footer>
   <div class="ad">
     <a href="https://www.tochka.com/betterworld?utm_source=brend&utm_medium=esquire&utm_campaign=imagine" target="_blank" class="sponsor">
@@ -117,13 +119,21 @@
 {% block content %}
   <div class="articles-wrapper static {{ 'right' if right.key == current }}">
     <nav>
-      <div class="switcher">
+      <div class="switcher" data-left="{{ url(left) }}" data-right="{{ url(right) }}">
         <div class="switcher-wrapper">
-          <a href="{{ left.prod_url if production else left.url }}" />{{ left.city }}</a>
-          <div class="toggle"></div>
-          <a href="{{ right.prod_url if production else right.url }}" />{{ right.city }}</a>
+          {% if left.key == current %}
+            <div class="switcher-label">{{ left.city }}</div>
+          {% else %}
+            <a class="switcher-label" href="{{ url(left) }}" />{{ left.city }}</a>
+          {% endif %}
+          <a class="toggle" href="{{ url(right) if left.key == current else url(left) }}"></a>
+          {% if right.key == current %}
+            <div class="switcher-label">{{ right.city }}</div>
+          {% else %}
+            <a class="switcher-label" href="{{ url(right) }}" />{{ right.city }}</a>
+          {% endif %}
         </div>
-        <a class="switcher-caption" href="{{ other.prod_url if production else other.url }}">
+        <a class="switcher-caption" href="{{ url(right) if left.key == current else url(left) }}">
           Переключить
         </a>
       </div>

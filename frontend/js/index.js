@@ -1,25 +1,5 @@
 var lory = require('lory.js').lory;
 
-function hasClass(el, className) {
-  return el.classList.contains(className);
-};
-
-function removeClass(el, className) {
-  el.classList.remove(className);
-};
-
-function addClass(el, className) {
-  el.classList.add(className);
-};
-
-function toggleClass(el, className) {
-  if (hasClass(el, className)) {
-    removeClass(el, className);
-  } else {
-    addClass(el, className);
-  }
-}
-
 function forEachSelector(selector, callback) {
   Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(callback);
 }
@@ -27,7 +7,7 @@ function forEachSelector(selector, callback) {
 function initSliders() {
   forEachSelector('.js_slider', function(el) {
     var slider = lory(el);
-    if (hasClass(el, 'index-slider')) {
+    if (el.classList.contains('index-slider')) {
       startSlideshow(el, slider);
     }
   });
@@ -51,7 +31,7 @@ function startSlideshow(el, slider) {
       }
 
       timeout = slide();
-    }, 3000);
+    }, 5000);
   }
 
   timeout = slide();
@@ -67,14 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
       var slideIndex = (e.detail || { currentSlide: 0 }).currentSlide || 0;
 
       if (slideIndex === 0) {
-        removeClass(nextButton, 'hide');
-        addClass(prevButton, 'hide');
+        nextButton.classList.remove('hide');
+        prevButton.classList.add('hide');
       } else if (slideIndex === slidesNumber - 1) {
-        addClass(nextButton, 'hide');
-        removeClass(prevButton, 'hide');
+        nextButton.classList.add('hide');
+        prevButton.classList.remove('hide');
       } else {
-        removeClass(nextButton, 'hide');
-        removeClass(prevButton, 'hide');
+        nextButton.classList.remove('hide');
+        prevButton.classList.remove('hide');
       }
     }
 
@@ -86,19 +66,19 @@ document.addEventListener('DOMContentLoaded', function() {
   forEachSelector('.index-slider', function(el) {
     function callback(e) {
       forEachSelector('.companies-slider li .company, .companies li .company', function(el) {
-        removeClass(el, 'active');
+        el.classList.remove('active');
       });
       var slideIndex = (e.detail || { currentSlide: 0 }).currentSlide || 0;
       var compareIndex = Math.floor(slideIndex/2) + 1;
       var companyIndex = slideIndex % 2;
       forEachSelector('.companies li:nth-child(' + compareIndex + ') .company', function(el, index) {
         if (index === companyIndex) {
-          addClass(el, 'active');
+          el.classList.add('active');
         }
       });
       forEachSelector('.companies-slider li:nth-child(' + compareIndex + ') .company', function(el, index) {
         if (index === companyIndex) {
-          addClass(el, 'active');
+          el.classList.add('active');
         }
       });
     }
@@ -113,12 +93,54 @@ document.addEventListener('DOMContentLoaded', function() {
   var nextArticle = document.querySelector('.next-article');
 
   function animateArticle(type) {
-    removeClass(document.querySelector(".articles-wrapper"), "static");
+    if (type == "right" && document.querySelector(".articles-wrapper").classList.contains("right")) return;
+    if (type == "left" && !document.querySelector(".articles-wrapper").classList.contains("right")) return;
+
+    document.querySelector(".articles-wrapper").classList.remove("static");
     setTimeout(function() {
-      var method = (type == 'right') ? addClass : removeClass;
-      method(document.querySelector(".articles-wrapper"), "right");
+      var method = (type == 'right') ? "add" : "remove";
+      document.querySelector(".articles-wrapper").classList[method]("right");
+
+      var switcher = document.querySelector(".switcher");
+      var switcherWrapper = document.querySelector(".switcher-wrapper");
+      var leftLabel = document.querySelector(".switcher-label:first-child");
+      var rightLabel = document.querySelector(".switcher-label:last-child");
+      var caption = document.querySelector(".switcher-caption");
+      var toggle = document.querySelector(".switcher .toggle");
+      var urls = {
+        left: switcher.getAttribute('data-left'),
+        right: switcher.getAttribute('data-right')
+      }
+      var otherType = (type == 'right') ? 'left' : 'right';
+
+      caption.setAttribute('href', urls[otherType]);
+      toggle.setAttribute('href', urls[otherType]);
+
+      function createLabel(text, url) {
+        var newLabel = document.createElement(url ? "a" : "div");
+        newLabel.innerHTML = text;
+        newLabel.classList.add("switcher-label");
+        if (url) newLabel.setAttribute("href", url);
+        return newLabel;
+      }
+
+      if (type == "right") {
+        var newLeftLabel = createLabel(leftLabel.innerHTML, urls.left);
+        var newRightLabel = createLabel(rightLabel.innerHTML);
+      } else {
+        var newLeftLabel = createLabel(leftLabel.innerHTML);
+        var newRightLabel = createLabel(rightLabel.innerHTML, urls.right);
+      }
+
+      switcherWrapper.replaceChild(newLeftLabel, leftLabel);
+      switcherWrapper.replaceChild(newRightLabel, rightLabel);
+
+      if (window.history) {
+        window.history.replaceState({}, null, urls[type]);
+      }
+
       setTimeout(function() {
-        addClass(document.querySelector(".articles-wrapper"), "static");
+        document.querySelector(".articles-wrapper").classList.add("static");
         initSliders();
       }, 1100);
     }, 10);
@@ -132,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .addEventListener('click', function() { animateArticle('right') });
     nextArticle.querySelector('.center-button')
       .addEventListener('click', function() {
-        if (hasClass(document.querySelector(".articles-wrapper"), "right")) {
+        if (document.querySelector(".articles-wrapper").classList.contains("right")) {
           animateArticle('left');
         } else {
           animateArticle('right');
@@ -143,9 +165,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var lastScrollY = window.scrollY;
 
       if (lastScrollY >= 446 && document.body.scrollHeight - lastScrollY - document.body.clientHeight > 300) {
-        addClass(nextArticle, 'show');
+        nextArticle.classList.add('show');
       } else {
-        removeClass(nextArticle, 'show');
+        nextArticle.classList.remove('show');
       }
     })
   }

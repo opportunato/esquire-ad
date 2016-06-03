@@ -5,7 +5,7 @@
 
 {% macro company(data, active) %}
 {% if data.content %}
-<a href="{{ data.prod_url if production else data.url }}" class="company {{ 'active' if active }}">
+<a href="{{ url(data) }}" class="company {{ 'active' if active }}">
 {% else %}
 <div class="company">
 {% endif %}
@@ -57,7 +57,7 @@
                   <div class="index-wrapper">
                     <h1>{{ data.title }}</h1>
                     <h2>{{ data.description }}</h2>
-                    <a class="button" href="{{ data.prod_url if production else data.url }}">
+                    <a class="button" href="{{ url(data) }}">
                       <div class="color"></div>
                       Читать
                     </a>
