@@ -112,9 +112,19 @@ $companiesHeightMobile: 177px;
 }
 
 .index-slide {
+  position: relative;
+
   height: 100%;
   background: url("../images/bg.jpg") center;
   background-size: cover;
+}
+
+.index-slide-link {
+  display: block;
+
+  position: absolute;
+  top: 0; left: 0;
+  bottom: 0; right: 0;
 }
 
 .index-wrapper {

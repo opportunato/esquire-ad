@@ -545,12 +545,32 @@ footer {
   padding: 0 16px;
   max-width: $contentWidth;
 
-  @media (min-width: $mobile) {
-    height: 350px;
+  @media (min-width: $tablet) {
+    height: 750px;
   }
 
-  @media (min-width: $tablet) {
-    height: 430px;
+  .video {
+    position: relative;
+
+    background: url(../images/video_thumbnail.jpg) no-repeat top left;
+    background-size: 100% auto;
+    cursor: pointer;
+    margin: 16px 0;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+
+    @media (min-width: $tablet) {
+      margin-top: 40px;
+    }
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
   }
 
   .sponsor {
@@ -561,7 +581,7 @@ footer {
     display: block;
     width: 247px;
 
-    @media (min-width: $mobile) {
+    @media (min-width: $tablet) {
       margin-bottom: 0;
       position: absolute;
       width: 421px;
@@ -580,7 +600,7 @@ footer {
     font-family: $secondaryFont;
     font-size: 10px;
 
-    @media (min-width: $mobile) {
+    @media (min-width: $tablet) {
       position: absolute;
       bottom: 60px;
       font-size: 12px;

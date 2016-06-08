@@ -169,6 +169,10 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         nextArticle.classList.remove('show');
       }
+    });
+
+    document.querySelector(".video").addEventListener('click', function(e) {
+      e.target.innerHTML = '<iframe src="https://www.youtube.com/embed/MhIAUQO3iSI?origin=https://esquire.ru/tochka&autoplay=1" frameborder="0"></iframe>';
     })
   }
 
