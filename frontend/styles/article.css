@@ -359,7 +359,8 @@ $buttonSize: 60px;
   }
 
   > .group,
-  > .article-slider {
+  > .article-slider,
+  figure.large {
     position: relative;
     width: 100%;
 
@@ -387,6 +388,17 @@ $buttonSize: 60px;
 
       &:last-child {
         margin-bottom: 0;
+      }
+
+      &.long {
+        @media (min-width: $smalltablet) {
+          float: right;
+          margin-right: 0;
+
+          + p {
+            margin-bottom: calc($mobilePadding + 3px);
+          }
+        }
       }
 
       @media (min-width: $smalltablet) {

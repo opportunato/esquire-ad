@@ -31,14 +31,18 @@
         {% if block.type == "header" %}
           <h3>{{ block.content }}</h3>
         {% elif block.type == "image" %}
-          <figure>
+          <figure {{ "class=large" if block.large else "" }}>
             <p>
-              <picture>
-                <!--[if IE 9]><video style="display: none;"><![endif]-->
-                <source srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{block.content}}@2x.jpg" media="(min-width: 500px)">
-                <!--[if IE 9]></video><![endif]-->
+              {% if data.retina %}
+                <picture>
+                  <!--[if IE 9]><video style="display: none;"><![endif]-->
+                  <source srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{block.content}}@2x.jpg" media="(min-width: 500px)">
+                  <!--[if IE 9]></video><![endif]-->
+                  <img srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{block.content}}.jpg">
+                </picture>
+              {% else %}
                 <img srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{block.content}}.jpg">
-              </picture>
+              {% endif %}
             </p>
             {% if block.caption %}
               <figcaption>{{ block.caption }}</figcaption>
@@ -52,12 +56,16 @@
                   <li>
                     <figure>
                       <p>
-                        <picture>
-                          <!--[if IE 9]><video style="display: none;"><![endif]-->
-                          <source srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{image}}@2x.jpg" media="(min-width: 500px)">
-                          <!--[if IE 9]></video><![endif]-->
+                        {% if data.retina %}
+                          <picture>
+                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                            <source srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{image}}@2x.jpg" media="(min-width: 500px)">
+                            <!--[if IE 9]></video><![endif]-->
+                            <img srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{image}}.jpg">
+                          </picture>
+                        {% else %}
                           <img srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{image}}.jpg">
-                        </picture>
+                        {% endif %}
                       </p>
                     </figure>
                   </li>
@@ -76,13 +84,17 @@
         {% elif block.type == "images" %}
           <figure class="group">
             {% for image in block.content %}
-              <p>
-                <picture>
-                  <!--[if IE 9]><video style="display: none;"><![endif]-->
-                  <source srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{image}}@2x.jpg" media="(min-width: 500px)">
-                  <!--[if IE 9]></video><![endif]-->
+              <p {{ "class=long" if block.content.length == 3 and loop.index == 1 else "" }}>
+                {% if data.retina %}
+                  <picture>
+                    <!--[if IE 9]><video style="display: none;"><![endif]-->
+                    <source srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{image}}@2x.jpg" media="(min-width: 500px)">
+                    <!--[if IE 9]></video><![endif]-->
+                    <img srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{image}}.jpg">
+                  </picture>
+                {% else %}
                   <img srcset="{{ assets_prefix }}/images/companies/{{data.key}}/photos/{{image}}.jpg">
-                </picture>
+                {% endif %}
               </p>
             {% endfor %}
           </figure>
@@ -95,6 +107,11 @@
         {% endif %}
       {% endif %}
     {% endfor %}
+    {% if data.photo %}
+      <div class="authors">
+        <p>Фото: {{ data.photo }}</p>
+      </div>
+    {% endif %}
   </div>
   <footer>
     <h3>Сравнить с</h3>

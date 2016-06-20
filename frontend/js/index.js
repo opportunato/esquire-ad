@@ -15,19 +15,31 @@ function initSliders() {
 
 function startSlideshow(el, slider) {
   var timeout = null;
+  var direction = 'right';
 
   forEachSelector('.prev, .next', function(el) {
     el.addEventListener('click', function(e) {
       clearTimeout(timeout);
-    })
+    });
+  });
+  el.addEventListener('on.lory.touchstart', function() {
+    clearTimeout(timeout);
   });
 
   function slide() {
     return setTimeout(function() {
-      if (slider.returnIndex() < 1) {
+      if (direction === 'right') {
         slider.next();
       } else {
         slider.prev();
+      }
+
+      if (slider.returnIndex() === 1) {
+        direction = 'left';
+      }
+
+      if (slider.returnIndex() === 0) {
+        direction = 'right';
       }
 
       timeout = slide();
