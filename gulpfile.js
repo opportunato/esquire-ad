@@ -93,7 +93,7 @@ gulp.task('nunjucks', function() {
     .pipe(data(function() { return require('./frontend/data/crossfit.json') }))
     .pipe(data(function() { return require('./frontend/data/berlin.json') }))
     .pipe(data(function() { return require('./frontend/data/ufa.json') }))
-    .pipe(data(function() { return require('./frontend/data/peterburg.json') }))
+    .pipe(data(function() { return require('./frontend/data/petersburg.json') }))
     .pipe(data(function() { return require('./frontend/data/seul.json') }))
     .pipe(data(function() { return require('./frontend/data/meta.json') }))
     .pipe(data(function() { return { "production": !isDevelopment } }))

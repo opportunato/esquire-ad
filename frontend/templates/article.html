@@ -13,7 +13,7 @@
     <ul class="info">
       <li>
         <p>Город:</p>
-        <p>{{ data.city }}</p>
+        <p>{{ data.city | safe }}</p>
       </li>
       <li>
         <p>Год основания:</p>
@@ -113,7 +113,7 @@
       </div>
     {% endif %}
   </div>
-  <footer>
+  <footer {{ 'style=background-color:' + data.footerColor if data.footerColor else "" }}>
     <h3>Сравнить с</h3>
     <h1>{{ other.short_title }}</h1>
     <h2>{{ other.description }}</h2>
@@ -140,15 +140,15 @@
       <div class="switcher" data-left="{{ url(left) }}" data-right="{{ url(right) }}">
         <div class="switcher-wrapper">
           {% if left.key == current %}
-            <div class="switcher-label">{{ left.city }}</div>
+            <div class="switcher-label">{{ left.city | safe }}</div>
           {% else %}
-            <a class="switcher-label" href="{{ url(left) }}" />{{ left.city }}</a>
+            <a class="switcher-label" href="{{ url(left) }}" />{{ left.city | safe }}</a>
           {% endif %}
           <a class="toggle" href="{{ url(right) if left.key == current else url(left) }}"></a>
           {% if right.key == current %}
-            <div class="switcher-label">{{ right.city }}</div>
+            <div class="switcher-label">{{ right.city | safe }}</div>
           {% else %}
-            <a class="switcher-label" href="{{ url(right) }}" />{{ right.city }}</a>
+            <a class="switcher-label" href="{{ url(right) }}" />{{ right.city | safe }}</a>
           {% endif %}
         </div>
         <a class="switcher-caption" href="{{ url(right) if left.key == current else url(left) }}">
@@ -176,9 +176,9 @@
     {% endif %}
 
     <div class="next-article">
-      <button class="next-button">{{ left.city }}</button>
+      <button class="next-button">{{ left.city | safe }}</button>
       <button class="center-button"></button>
-      <button class="next-button">{{ right.city }}</button>
+      <button class="next-button">{{ right.city | safe }}</button>
     </div>
   </div>
   <script src="{{ assets_prefix }}/js/app.js"></script>

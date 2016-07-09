@@ -34,3 +34,5 @@ node_modules
 
 # build goes here
 public
+
+.idea

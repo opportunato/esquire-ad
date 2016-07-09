@@ -34,7 +34,7 @@ function startSlideshow(el, slider) {
         slider.prev();
       }
 
-      if (slider.returnIndex() === 3) {
+      if (slider.returnIndex() === 5) {
         direction = 'left';
       }
 
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function(e) {
       var lastScrollY = window.scrollY;
 
-      if (lastScrollY >= 446 && document.body.scrollHeight - lastScrollY - document.body.clientHeight > 300) {
+      if (lastScrollY >= 446 && document.body.scrollHeight - lastScrollY - document.body.clientHeight > 700) {
         nextArticle.classList.add('show');
       } else {
         nextArticle.classList.remove('show');

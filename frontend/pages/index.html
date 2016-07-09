@@ -17,7 +17,7 @@
     </div>
   {% endif %}
   <h3>{{ data.short_title }}</h3>
-  <h4>{{ data.city }}</h4>
+  <h4>{{ data.city | safe }}</h4>
 {% if data.content %}
 </a>
 {% else %}
@@ -51,7 +51,7 @@
       <div class="index-slider js_slider">
         <div class="frame js_frame">
           <ul class="slides js_slides">
-            {% for data in [arma, crossfit, ufa, berlin] %}
+            {% for data in [arma, crossfit, ufa, berlin, petersburg, seul] %}
               <li>
                 <div class="index-slide"  style="background-image:url({{ assets_prefix }}/images/companies/{{data.key}}/index.jpg);">
                   <a class="index-slide-link" target="_blank" href="https://www.tochka.com/betterworld?utm_source=brend&utm_medium=esquire&utm_campaign=betterworld"></a>
@@ -88,7 +88,7 @@
             {{ compared("Кондитерские", ufa, berlin) }}
           </li>
           <li>
-            {{ compared("Хостелы", peterburg, seul) }}
+            {{ compared("Хостелы", petersburg, seul) }}
           </li>
         </ul>
       </div>
@@ -109,7 +109,7 @@
         {{ compared("Кондитерские", ufa, berlin) }}
       </li>
       <li>
-        {{ compared("Хостелы", peterburg, seul) }}
+        {{ compared("Хостелы", petersburg, seul) }}
       </li>
     </ul>
   </div>

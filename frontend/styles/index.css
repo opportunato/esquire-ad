@@ -201,15 +201,18 @@ $companiesHeightMobile: 187px;
       margin-left: 0;
     }
 
+    &:last-child {
+      margin-right: 0;
+    }
+
     @media (min-width: $tablet) {
       padding-left: 2%;
       padding-right: 2%;
-      border-right: 1px solid #979797;
-    }
 
-    &:last-child {
-      border-right: none;
-      margin-right: 0;
+      &:nth-child(2) {
+        border-left: 1px solid #979797;
+        border-right: 1px solid #979797;
+      }
     }
   }
 }
@@ -263,33 +266,6 @@ $companiesHeightMobile: 187px;
   li {
     vertical-align: top;
     height: 100%;
-  }
-
-  li:nth-child(3) {
-    .compared {
-      opacity: 0.7;
-    }
-
-    &:after {
-      content: 'Скоро';
-
-      position: absolute;
-      top: calc(32px + 73px/2);
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      @media (min-width: $tablet) {
-        top: calc(42px + 112px/2);
-      }
-
-      color: #EFAAC6;
-      font-size: 36px;
-      font-weight: 900;
-    }
-  }
-
-  li:nth-child(3):after {
-    color: #85B7CF;
   }
 }
 
