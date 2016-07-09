@@ -4,12 +4,12 @@
 {% macro article(data, other, isLeft) %}
 <article class="article {{ 'left' if isLeft else 'right' }}">
   <div class="top-wrapper">
-    <div class="header-wrapper" style="background-image:url({{ assets_prefix }}/images/companies/{{data.key}}/bg.jpg);">
+    <a href="https://www.tochka.com/betterworld/?utm_source=brend&utm_medium=esquire&utm_campaign=betterworld" target="_blank" class="header-wrapper" style="background-image:url({{ assets_prefix }}/images/companies/{{data.key}}/bg.jpg);">
       <header>
         <h1>{{ data.title }}</h1>
         <h2>{{ data.description }}</h2>
       </header>
-    </div>
+    </a>
     <ul class="info">
       <li>
         <p>Город:</p>

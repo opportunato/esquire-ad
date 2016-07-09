@@ -34,7 +34,7 @@ function startSlideshow(el, slider) {
         slider.prev();
       }
 
-      if (slider.returnIndex() === 1) {
+      if (slider.returnIndex() === 3) {
         direction = 'left';
       }
 

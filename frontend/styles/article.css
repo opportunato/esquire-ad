@@ -196,6 +196,8 @@ $buttonSize: 60px;
   }
 
   .header-wrapper {
+    display: block;
+
     position: relative;
     height: 311px;
 

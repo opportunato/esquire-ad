@@ -9,14 +9,14 @@
 {% else %}
 <div class="company">
 {% endif %}
-  {% if data.short_title %}
+  {% if data.prod_url %}
     <div class="avatar" style="background-image:url({{ assets_prefix }}/images/companies/{{data.key}}/preview.png)">
     </div>
-    <h3>{{ data.short_title }}</h3>
   {% else %}
     <div class="avatar" style="background-image:url({{ assets_prefix }}/images/companies/noname.png)">
     </div>
   {% endif %}
+  <h3>{{ data.short_title }}</h3>
   <h4>{{ data.city }}</h4>
 {% if data.content %}
 </a>
@@ -51,7 +51,7 @@
       <div class="index-slider js_slider">
         <div class="frame js_frame">
           <ul class="slides js_slides">
-            {% for data in [arma, crossfit] %}
+            {% for data in [arma, crossfit, ufa, berlin] %}
               <li>
                 <div class="index-slide"  style="background-image:url({{ assets_prefix }}/images/companies/{{data.key}}/index.jpg);">
                   <a class="index-slide-link" target="_blank" href="https://www.tochka.com/betterworld?utm_source=brend&utm_medium=esquire&utm_campaign=betterworld"></a>
@@ -88,7 +88,7 @@
             {{ compared("Кондитерские", ufa, berlin) }}
           </li>
           <li>
-            {{ compared("Фотостудии", ekaterinburg, london) }}
+            {{ compared("Хостелы", peterburg, seul) }}
           </li>
         </ul>
       </div>
@@ -109,7 +109,7 @@
         {{ compared("Кондитерские", ufa, berlin) }}
       </li>
       <li>
-        {{ compared("Фотостудии", ekaterinburg, london) }}
+        {{ compared("Хостелы", peterburg, seul) }}
       </li>
     </ul>
   </div>
